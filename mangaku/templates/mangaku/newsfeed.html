@@ -1,0 +1,101 @@
+{% extends 'mangaku/layout.html' %}
+{% load humanize %}
+{% block content %}
+{% include 'mangaku/navbar.html'   %}
+<div class="all">
+
+    <div class="rowfixed"></div>
+    <div class="left_row">
+        <div class="left_row_profile">
+            <img id="portada" src="{{ request.user.profile.fondo.url }}" />
+            <div class="left_row_profile">
+                <img id="profile_pic" src="{{ request.user.profile.image.url }}" />
+                <span>{{ request.user.first_name }}<br> @{{ user }}<p> {{ request.user.profile.followers.count }} followers  /  {{ request.user.profile.following.count }} follow</p></span>
+            </div>
+        </div>
+        <div class="rowmenu">
+            <ul>
+                <li><a href="{% url 'home' %}" id="rowmenu-selected"><i class="fa fa-globe"></i>Inicio</a></li>
+                <li><a href="{% url 'profile' user %}"><i class="fa fa-user"></i>Perfil</a></li>
+                <li><a href="#" ><i class="fa fa-users"></i>Grupos</a></li>
+                <li><a href="{% url 'chat' user %}"><i class="fa fa-comments-o"></i>Mensajes</a></li>
+                <li><a href="{% url 'editar' %}"><i class="fa fa-tasks"></i>Editar perfil</a></li>
+                <li><a href="friends.html"><i class="fa fa-cogs"></i>Configuracion</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div class="right_row">
+        <div class="row">
+            <div class="publish">
+                <div class="row_title">
+                    <span><i class="fa fa-newspaper-o" aria-hidden="true"></i> Estado </span>
+
+                </div>
+                <form  method="post" >
+                    {% csrf_token %}
+                    <div class="publish_textarea">
+                        <img class="border-radius-image" src="{{ request.user.profile.image.url }}" alt="" />
+                        <textarea name="content" type="text" placeholder="¿Que estas pensando?" style="resize: none;"></textarea><br>
+                    </div>
+                
+                    <div class="publish_icons">
+                        <ul>
+                            <label for="document-input" class="file-input-label">
+                                <i class="fa fa-video-camera"></i>
+                            </label>
+                            <input type="file" id="document-input" class="file-input"> 
+                            <label for="document-input" class="file-input-label">
+                                <i class="fa fa-camera"></i>
+                            </label>
+                            <input type="file" id="document-input" class="file-input">                              
+                            <li><i class="fa fa-map-marker" aria-hidden="true"></i></li>
+                        </ul>
+                        <button>Publicar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {% include 'mangaku/post.html'   %}
+
+        
+
+        
+        <center>
+            <a href=""><div class="loadmorefeed">
+                <i class="fa fa-ellipsis-h"></i>
+            </div></a>
+        </center>
+    </div>
+    
+    <div class="suggestions_row">
+        <div class="row shadow">
+            <div class="row_title">
+                <span>Mangakus sugeridos</span>
+                <a href="#">Mostrar Más</a>
+            </div>
+            <div class="row_contain" id="suggested-users">
+                <!-- Aquí se cargarán los usuarios sugeridos -->
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+</div>
+<button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up"></i></button>
+    
+  
+
+ 
+
+
+
+
+
+
+{% endblock content %}

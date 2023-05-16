@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mangaku</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"  type="text/css" />
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login/main.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+
+
+    
+
+  
+
+   
+
+    
+</head>
+
+<body>
+    
+
+    {% block content %}
+    <div class="rowfixed"></div>
+    <div class="left_row">
+        <div class="left_row_profile">
+            <img id="portada" src="{% static 'img/logo.png' %}" />
+            <div class="left_row_profile">
+                <img id="profile_pic" src="{% static 'img/logo.png' %}" />
+                <span>{{ request.user.first_name }}<br><p> {{ request.user.profile.followers.count }} followers  /  {{ request.user.profile.following.count }} follow</p></span>
+            </div>
+        </div>
+        <div class="rowmenu">
+            <ul>
+                <li><a href="{% url 'home' %}" id="rowmenu-selected"><i class="fa fa-globe"></i>Inicio</a></li>
+                <li><a href="{% url 'profile' user %}"><i class="fa fa-user"></i>Perfil</a></li>
+                <li><a href="#" ><i class="fa fa-users"></i>Grupos</a></li>
+                <li><a href="friends.html"><i class="fa fa-comments-o"></i>Mensajes</a></li>
+                <li><a href="{% url 'editar' %}"><i class="fa fa-tasks"></i>Editar perfil</a></li>
+                <li><a href="friends.html"><i class="fa fa-cogs"></i>Configuracion</a></li>
+            </ul>
+        </div>
+    </div>
+
+    {% endblock content %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    
+</body>
+
+</html>

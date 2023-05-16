@@ -1,0 +1,59 @@
+{% load humanize %}
+{% for post in posts %}
+<div class="row border-radius">
+    <div class="feed">
+        <div class="feed_title">
+            <img src="{{ post.user.profile.image.url }}" alt="" />
+            <a href="{% url 'profile' post.user %}"><span><b>{{ post.user.first_name }}</b><p>{{ post.timestamp|naturaltime }}</p></span></a>
+        </div>
+        <div class="feed_content">
+            <div class="feed_content_image">
+                <p>{{ post.content }}</p>
+            </div>
+        </div>
+        <div class="feed_footer">
+            <ul class="feed_footer_left">
+                <li class="hover-orange selected-orange">
+                    <a id="like-form" href="{% url 'like_post' post.id %}">
+                        {% if request.user in post.likes.all %}
+                            <i class="fa fa-heart"></i> 
+                        {% else %}
+                            <i class="fa fa-heart-o"></i> 
+                        {% endif %}
+                    </a>
+                </li>
+                <li>
+                    <span>A <b>{{ post.total_likes }}</b> personas les gusta esto</span>
+                </li>
+            </ul>
+            <ul class="feed_footer_right">
+                {% if request.user == post.user %}
+                    <li><a href="{% url 'delete' post.id %}" style="color:#515365;"><i class="fa fa-trash-o"></i></a></li>
+                {% endif %}
+                {% if post.user == request.user %}
+                <!-- No mostrar el elemento si el post fue publicado por el mismo usuario -->
+                {% else %}
+                <li class="hover-orange"><i class="fa fa-gift"></i></li>
+                {% endif %}
+                <a href="{% url 'comentarios' post_id=post.id %}" style="color:#515365;">
+                    <li class="hover-orange"><i class="fa fa-comments-o"></i></li>
+                </a>
+                <li class="hover-orange "><i class="fa fa-share"></i></li>
+            </ul>
+        </div>
+        <div class="feedcomments">
+            <ul>
+                <li>
+                    <div class="feedcomments-user">
+                        <img src="{{ request.user.profile.image.url }}" />
+                        <span><b><textarea placeholder="Escribe un comentario" name="" id="" cols="60" rows="2.5"></textarea></b></span>
+                    </div>
+                    <div class="feedcomments-comment">
+                        
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endfor %}

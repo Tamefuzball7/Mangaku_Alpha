@@ -1,0 +1,155 @@
+{% extends 'mangaku/layout.html' %}
+{% block content %}
+{% include 'mangaku/navbar.html' %}
+
+<div class="all">
+    <div class="rowfixed"></div>
+    <div class="left_row">
+        <div class="left_row_profile">
+            <img id="portada" src="{{ user.profile.fondo.url }}" />
+            <div class="left_row_profile">
+                <img id="profile_pic" src="{{ user.profile.image.url }}" />
+                <span>{{ user.first_name }}<br>@{{ user }}<br><p> {{ user.profile.followers.count }} followers / {{ user.profile.following.count }} follow</p></span>
+            </div>
+        </div>
+        <div class="rowmenu">
+            <ul>
+                <li><a href="{% url 'home' %}" ><i class="fa fa-globe"></i>Inicio</a></li>
+                <li><a href="{% url 'profile' user %}" id="rowmenu-selected"><i class="fa fa-user"></i>Perfil</a></li>
+                <li><a href="#" ><i class="fa fa-users"></i>Grupos</a></li>
+                <li><a href="friends.html"><i class="fa fa-comments-o"></i>Mensajes</a></li>
+                <li><a href="{% url 'editar' %}"><i class="fa fa-tasks"></i>Editar perfil</a></li>
+                <li><a href="friends.html"><i class="fa fa-cogs"></i>Configuracion</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div class="right_row">
+        <div class="row border-radius">
+            <div class="feed">
+                <div class="feed_title">
+                    <span><a href="{% url 'profile' user %}" ><b>Perfil</b></a> | <a href="{% url 'about' user %}" id="select_profile_menu"><b>Acerca de mi</b></a> | <a href="{% url 'fotos' user %}"><b>Fotos</b></a></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row border-radius">
+            <div class="settings shadow">
+                <div class="settings_title">
+                    <h3>Personal Info</h3>
+                </div>
+                <div class="settings_content">
+                    <style type="text/css">
+                        .settings_content ul li p {padding:5px;padding-left: 20px}
+                    </style>
+                    <ul>
+                        <li>
+                            <p>
+                                <b>Acerca de mi:</b>
+                                <br>
+                                {{ user.profile.bio }}
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <b>Fecha de nacimiento:</b>
+                                <br>
+                                December 14th, 1980
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <b>Pais:</b>
+                                <br>
+                                {{ user.profile.pais }}
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <b>Vive en:</b>
+                                <br>
+                                San Francisco, California, USA
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <b>Ocupacion:</b>
+                                <br>
+                                {{ user.profile.profesion }}
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <b>Cuando se unio:</b>
+                                <br>
+                                April 31st, 2014
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <b>Genero:</b>
+                                <br>
+                                {{ user.profile.genero }}
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <b>Estado civil:</b>
+                                <br>
+                                Married
+                            </p>
+                        </li>
+                        <li>
+                        <li>
+                            <p>
+                                <b>Sitio Web:</b>
+                                <br>
+                                Ferrule.space/
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <b>Numero de Celular:</b>
+                                <br>
+                                {{ user.profile.celular }}
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        
+        
+
+    </div>
+
+    <div class="suggestions_row">
+        
+
+        <div class="row shadow">
+            <div class="row_title">
+                <span>Last photos</span>
+                <a href="#">see all..</a>
+            </div>
+            <div class="row_contain_profilephotos">
+                <ul>
+                    <li><a href="#"><img src="images/pp_1.jpg" alt="" /></a></li>
+                    <li><a href="#"><img src="images/pp_2.jpg" alt="" /></a></li>
+                    <li><a href="#"><img src="images/pp_3.jpg" alt="" /></a></li>
+                    <li><a href="#"><img src="images/pp_4.jpg" alt="" /></a></li>
+                    <li><a href="#"><img src="images/pp_5.jpg" alt="" /></a></li>
+                    <li><a href="#"><img src="images/pp_6.jpg" alt="" /></a></li>
+                    <li><a href="#"><img src="images/pp_3.jpg" alt="" /></a></li>
+                    <li><a href="#"><img src="images/pp_1.jpg" alt="" /></a></li>
+                    <li><a href="#"><img src="images/pp_1.jpg" alt="" /></a></li>
+                    <li><a href="#"><img src="images/pp_2.jpg" alt="" /></a></li>
+                    <li><a href="#"><img src="images/pp_6.jpg" alt="" /></a></li>
+                    <li><a href="#"><img src="images/pp_4.jpg" alt="" /></a></li>
+                </ul>
+            </div>
+        </div>
+
+{% endblock content %}
