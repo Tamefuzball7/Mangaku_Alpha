@@ -4,7 +4,7 @@
     <div class="feed">
         <div class="feed_title">
             <img src="{{ post.user.profile.image.url }}" alt="" />
-            <a href="{% url 'profile' post.user %}"><span><b>{{ post.user.first_name }}</b><p>{{ post.timestamp|naturaltime }}</p></span></a>
+            <a href="{% url 'profile' post.user %}"><span><b>{{ post.user.first_name }} {{ post.user.last_name }}</b><p>{{ post.timestamp|naturaltime }}</p></span></a>
         </div>
         <div class="feed_content">
             <div class="feed_content_image">

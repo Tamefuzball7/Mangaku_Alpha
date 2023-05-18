@@ -9,7 +9,7 @@
             <img id="portada" src="{{ user.profile.fondo.url }}" />
             <div class="left_row_profile">
                 <img id="profile_pic" src="{{ user.profile.image.url }}" />
-                <span>{{ user.first_name }}<br>@{{ user }}<br><p> {{ user.profile.followers.count }} followers / {{ user.profile.following.count }} follow</p></span>
+                <span>{{ user.first_name }} {{ user.last_name }}<br>@{{ user }}<br><p> {{ user.profile.followers.count }} followers / {{ user.profile.following.count }} follow</p></span>
             </div>
         </div>
         <div class="rowmenu">
@@ -63,7 +63,7 @@
                             <p>
                                 <b>Pais:</b>
                                 <br>
-                                {{ user.profile.pais }}
+                                {{ user.profile.country }}
                             </p>
                         </li>
                         <li>
@@ -77,21 +77,21 @@
                             <p>
                                 <b>Ocupacion:</b>
                                 <br>
-                                {{ user.profile.profesion }}
+                                {{ user.profile.profession }}
                             </p>
                         </li>
                         <li>
                             <p>
                                 <b>Cuando se unio:</b>
                                 <br>
-                                April 31st, 2014
+                                {{ user.date_joined }}
                             </p>
                         </li>
                         <li>
                             <p>
                                 <b>Genero:</b>
                                 <br>
-                                {{ user.profile.genero }}
+                                {{ user.profile.gender }}
                             </p>
                         </li>
                         <li>
@@ -113,7 +113,7 @@
                             <p>
                                 <b>Numero de Celular:</b>
                                 <br>
-                                {{ user.profile.celular }}
+                                {{ user.profile.phone_number }}
                             </p>
                         </li>
                     </ul>
@@ -131,23 +131,13 @@
 
         <div class="row shadow">
             <div class="row_title">
-                <span>Last photos</span>
+                <span>Ultimas fotos</span>
                 <a href="#">see all..</a>
             </div>
             <div class="row_contain_profilephotos">
                 <ul>
-                    <li><a href="#"><img src="images/pp_1.jpg" alt="" /></a></li>
-                    <li><a href="#"><img src="images/pp_2.jpg" alt="" /></a></li>
-                    <li><a href="#"><img src="images/pp_3.jpg" alt="" /></a></li>
-                    <li><a href="#"><img src="images/pp_4.jpg" alt="" /></a></li>
-                    <li><a href="#"><img src="images/pp_5.jpg" alt="" /></a></li>
-                    <li><a href="#"><img src="images/pp_6.jpg" alt="" /></a></li>
-                    <li><a href="#"><img src="images/pp_3.jpg" alt="" /></a></li>
-                    <li><a href="#"><img src="images/pp_1.jpg" alt="" /></a></li>
-                    <li><a href="#"><img src="images/pp_1.jpg" alt="" /></a></li>
-                    <li><a href="#"><img src="images/pp_2.jpg" alt="" /></a></li>
-                    <li><a href="#"><img src="images/pp_6.jpg" alt="" /></a></li>
-                    <li><a href="#"><img src="images/pp_4.jpg" alt="" /></a></li>
+                    <li><a href="{{ user.profile.image.url }}"><img src="{{ user.profile.image.url }}" alt="Foto de perfil"></a></li>
+                    <li><a href="{{ user.profile.fondo.url }}"><img src="{{ user.profile.fondo.url }}" alt="Foto de fondo"></a></li>
                 </ul>
             </div>
         </div>

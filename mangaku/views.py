@@ -52,10 +52,10 @@ def delete(request, post_id):
 
 
 def profile(request, username):
-	user = User.objects.get(username=username)
-	posts = user.posts.all()
-	context = {'user':user, 'posts':posts}
-	return render(request, 'mangaku/profile.html', context)
+    user = User.objects.get(username=username)
+    posts = user.posts.all()
+    context = {'user': user, 'posts': posts}
+    return render(request, 'mangaku/profile.html', context)
 
 @login_required
 def editar(request):
@@ -139,6 +139,7 @@ def chat (request, username):
 	posts = user.posts.all()
 	context = {'user':user, 'posts':posts}
 	return render(request, 'mangaku/chat.html', context)
+
 
 
 

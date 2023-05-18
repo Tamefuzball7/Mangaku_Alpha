@@ -10,7 +10,7 @@
             <img id="portada" src="{{ request.user.profile.fondo.url }}" />
             <div class="left_row_profile">
                 <img id="profile_pic" src="{{ request.user.profile.image.url }}" />
-                <span>{{ request.user.first_name }}<br> @{{ user }}<p> {{ request.user.profile.followers.count }} followers  /  {{ request.user.profile.following.count }} follow</p></span>
+                <span>{{ request.user.first_name }} {{ request.user.last_name }}<br> @{{ user }}<p> {{ request.user.profile.followers.count }} followers  /  {{ request.user.profile.following.count }} follow</p></span>
             </div>
         </div>
         <div class="rowmenu">
@@ -45,12 +45,13 @@
                         <ul>
                             <label for="document-input" class="file-input-label">
                                 <i class="fa fa-video-camera"></i>
+                                <input id="document-input" type="file" class="file-input"> 
                             </label>
-                            <input type="file" id="document-input" class="file-input"> 
+                            
                             <label for="document-input" class="file-input-label">
                                 <i class="fa fa-camera"></i>
-                            </label>
-                            <input type="file" id="document-input" class="file-input">                              
+                                <input type="file" id="document-input" class="file-input">
+                            </label>                              
                             <li><i class="fa fa-map-marker" aria-hidden="true"></i></li>
                         </ul>
                         <button>Publicar</button>
@@ -90,12 +91,6 @@
 <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up"></i></button>
     
   
-
- 
-
-
-
-
 
 
 {% endblock content %}

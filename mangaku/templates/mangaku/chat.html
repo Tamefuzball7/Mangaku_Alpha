@@ -23,7 +23,7 @@
             <img id="portada" src="{{ user.profile.fondo.url }}" />
             <div class="left_row_profile">
                 <img id="profile_pic" src="{{ user.profile.image.url }}" />
-                <span>{{ user.first_name }}<br>@{{ user }}<br><p> {{ user.profile.followers.count }} followers / {{ user.profile.following.count }} follow</p></span>
+                <span>{{ user.first_name }} {{ request.user.last_name }}<br>@{{ user }}<br><p> {{ user.profile.followers.count }} followers / {{ user.profile.following.count }} follow</p></span>
             </div>
         </div>
         <div class="rowmenu">

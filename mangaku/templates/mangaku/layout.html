@@ -13,15 +13,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/login/util.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/login/main.css' %}">
     <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
-
-
-    
-
-  
-
-   
-
-    
 </head>
 
 <body>
@@ -31,9 +22,9 @@
     <div class="rowfixed"></div>
     <div class="left_row">
         <div class="left_row_profile">
-            <img id="portada" src="{% static 'img/logo.png' %}" />
+            <img id="portada" src="" />
             <div class="left_row_profile">
-                <img id="profile_pic" src="{% static 'img/logo.png' %}" />
+                <img id="profile_pic" src="" />
                 <span>{{ request.user.first_name }}<br><p> {{ request.user.profile.followers.count }} followers  /  {{ request.user.profile.following.count }} follow</p></span>
             </div>
         </div>

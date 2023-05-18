@@ -27,6 +27,7 @@ urlpatterns = [
     path('comentarios/<int:post_id>/', views.comentarios, name='comentarios'),
     path('fotos/<str:username>/', views.fotos, name='fotos'),
     path('chat/<str:username>/', views.chat, name='chat'),
+    
 
     
     

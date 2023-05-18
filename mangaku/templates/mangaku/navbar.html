@@ -24,7 +24,7 @@
     </div>
     <div class="navbar_user" id="profilemodal" style="cursor:pointer">
         <img src="{{ request.user.profile.image.url }}" alt="" />
-        <span id="navbar_user_top">{{ request.user.first_name }}<br><p>@{{ request.user }}</p></span><i class="fa fa-angle-down"></i>
+        <span id="navbar_user_top">{{ request.user.first_name }} {{ request.user.last_name }}<br><p>@{{ request.user }}</p></span><i class="fa fa-angle-down"></i>
     </div>
 </div>
    <!-- Modal Messages -->
@@ -38,7 +38,7 @@
         <ul>
             <li>
                 <a href="#">
-                    <img src="images/user-7.jpg" alt="" />
+                    <img src="#" alt="" />
                     <span><b>Diana Jameson</b><br>Hi James! It’s Diana, I just wanted to let you know that we have to reschedule...<p>4 hours ago</p></span>
                 </a>
             </li>
@@ -56,7 +56,7 @@
         <ul>
             <li>
                 <a href="#">
-                    <img src="images/user-2.jpg" alt="" />
+                    <img src="#" alt="" />
                     <span><b>Tony Stevens</b><br> Friends in Common</span>
                     <button class="modal-content-accept">Accept</button><button class="modal-content-decline">Decline</button>
                 </a>
@@ -93,9 +93,9 @@
 <div class="mobilemenu">
     
     <div class="mobilemenu_profile">
-        <img id="mobilemenu_portada" src="images/portada.jpg" />
+        <img id="mobilemenu_portada" src="" />
         <div class="mobilemenu_profile">
-            <img id="mobilemenu_profile_pic" src="images/user.jpg" /><br>
+            <img id="mobilemenu_profile_pic" src="" /><br>
             <span>Jonh Hamstrong<br><p>150k followers / 50 follow</p></span>
         </div>
         <div class="mobilemenu_menu">
