@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
+    'channels',
     'mangaku.apps.mangakuConfig',
     'django.contrib.humanize',
     'django.contrib.admin',
@@ -71,7 +73,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'social_project.wsgi.application'
+ASGI_APPLICATION = 'social_project.asgi.application'
 
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -121,6 +129,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
