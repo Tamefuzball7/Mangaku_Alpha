@@ -35,9 +35,11 @@
                 {% else %}
                 <li class="hover-orange"><i class="fa fa-gift"></i></li>
                 {% endif %}
-                <a href="{% url 'comentarios' post_id=post.id %}" style="color:#515365;">
+                {% for post in posts %}
+                <a href="{% url 'detalle_post' post.id %}" style="color:#515365;">
                     <li class="hover-orange"><i class="fa fa-comments-o"></i></li>
                 </a>
+                {% endfor %}
                 <li class="hover-orange "><i class="fa fa-share"></i></li>
             </ul>
         </div>

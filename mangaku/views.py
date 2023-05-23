@@ -119,12 +119,13 @@ def dislike_post(request, post_id):
         post.likes.remove(request.user)  # Eliminar like si existe
     return redirect('home')
 
-@login_required
-def comentarios (request, username):
-	user = User.objects.get(username=username)
-	posts = user.posts.all()
-	context = {'user':user, 'posts':posts}
-	return render(request, 'mangaku/comentarios.html', context)
+
+def detalle_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    # Resto del código
+    context = {'post': post}
+    return render(request, 'mangaku/comentarios.html', context)
+
 
 @login_required
 def fotos (request, username):
