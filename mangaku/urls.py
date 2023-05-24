@@ -26,7 +26,7 @@ urlpatterns = [
     path('about/<str:username>/', views.about, name='about'),
     path('like/<int:post_id>/', views.like_post, name='like_post'),
     path('dislike/<int:post_id>/', views.dislike_post, name='dislike_post'),
-    path('posts/<int:post_id>/', views.detalle_post, name='detalle_post'),
+    path('posts//<str:username>/<int:post_id>/', views.comentarios, name='comentarios'),
     path('fotos/<str:username>/', views.fotos, name='fotos'),
     path('chat/<str:username>/', views.chat, name='chat'),
     

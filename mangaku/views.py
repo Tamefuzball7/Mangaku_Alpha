@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Profile, Post, Relationship
+from .models import Profile, Post, Relationship, Comment
 from .forms import UserRegisterForm, PostForm, ProfileUpdateForm, UserUpdateForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -120,13 +120,6 @@ def dislike_post(request, post_id):
     return redirect('home')
 
 
-def detalle_post(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
-    # Resto del código
-    context = {'post': post}
-    return render(request, 'mangaku/comentarios.html', context)
-
-
 @login_required
 def fotos (request, username):
 	user = User.objects.get(username=username)
@@ -142,6 +135,20 @@ def chat (request, username):
 	return render(request, 'mangaku/chat.html', context)
 
 
+def comentarios(request, username, post_id):
+    user = get_object_or_404(User, username=username)
+    post = get_object_or_404(Post, id=post_id)
+
+    if request.method == 'POST':
+        content = request.POST.get('content')
+        comment = Comment(user=request.user, post=post, content=content)
+        comment.save()
+
+    comments = Comment.objects.filter(post=post)
+    comments_with_profiles = comments.select_related('user__profile')
+
+    context = {'user': user, 'post': post, 'comments': comments_with_profiles}
+    return render(request, 'mangaku/comentarios.html', context)
 
 
 

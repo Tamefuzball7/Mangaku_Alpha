@@ -40,8 +40,10 @@ class Post(models.Model):
     timestamp = models.DateTimeField(default=timezone.now)
     content = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
+    comments = models.ManyToManyField(User, through='Comment', related_name='commented_posts')
     likes = models.ManyToManyField(User, related_name='liked_posts', blank=True)
     dislikes = models.ManyToManyField(User, related_name='disliked_posts', blank=True)
+    
 
     class Meta:
         ordering = ['-timestamp']
@@ -62,6 +64,15 @@ class Relationship(models.Model):
 
 	def __str__(self):
 		return f'{self.from_user} to {self.to_user}'
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+   
 
 
 	

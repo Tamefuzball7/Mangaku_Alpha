@@ -63,18 +63,27 @@
                         {% if post.user != request.user %}
                             <li class="hover-orange"><i class="fa fa-gift"></i></li>
                         {% endif %}
-                        {% if post.id == post_id %}
                             <li class="hover-orange"><i class="fa fa-comments-o"></i></li>
-                        {% endif %}
                         <li class="hover-orange "><i class="fa fa-share"></i></li>
                     </ul>
                 </div>
                 <div class="feedcomments">
                     <ul>
                         <li>
+
+                            {% for comment in comments %}
+                            <div class="feedcomments-user">
+                                <img src="{{ comment.user.profile.image.url }}" />
+                                <span>@{{comment.user.username }} : <b>{{ comment.content }}</b></span>
+                            </div>
+                            {% endfor %}
                             <div class="feedcomments-user">
                                 <img src="{{ request.user.profile.image.url }}" />
-                                <span><b><textarea placeholder="Escribe un comentario" name="" id="" cols="60" rows="2.5"></textarea></b></span>
+                                <form method="post" action="{% url 'comentarios' user.username post.id %}">
+                                    {% csrf_token %}
+                                    <span><b><textarea placeholder="Escribe un comentario" name="content" id="" cols="60" rows="2.5"></textarea></b></span>
+                                    <button type="submit">Comentar</button>
+                                </form>
                             </div>
                             <div class="feedcomments-comment">
                                 
@@ -95,11 +104,7 @@
                 <span>Mangakus sugeridos</span>
                 <a href="friends.html">Mostrar Mas</a>
             </div>
-            <div class="row_contain">
-                <img src="{{ user.profile.image.url }}" alt="" />
-                <span><b>@{{ user.first_name }}</b><br></span>
-                <button>Seguir</button>
-            </div>
+
         </div>
     </div>
 </div>
