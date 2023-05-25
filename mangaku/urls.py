@@ -29,7 +29,9 @@ urlpatterns = [
     path('posts//<str:username>/<int:post_id>/', views.comentarios, name='comentarios'),
     path('fotos/<str:username>/', views.fotos, name='fotos'),
     path('chat/<str:username>/', views.chat, name='chat'),
-    
+    path('comentarios/<str:username>/<int:post_id>/editar/<int:comment_id>/', views.editar_comentario, name='editar_comentario'),
+	path('delete/<int:post_id>/<int:comment_id>/', views.delete_comment, name='delete_comment'),
+    path('search/', views.search, name='search'),
 
     
     

@@ -30,9 +30,25 @@ class UserUpdateForm(forms.ModelForm):
 		fields = ['first_name', 'username' ,'last_name',"email"]
 
 class ProfileUpdateForm(forms.ModelForm):
-	class Meta:
-		model = Profile
-		fields = ['image', 'bio', "fondo",'profession', 'phone_number', 'country', 'gender']
+    class Meta:
+        model = Profile
+        fields = ['image', 'bio', 'fondo', 'profession', 'phone_number', 'country', 'gender']
+        widgets = {
+            'bio': forms.Textarea(attrs={'rows': 4}),
+        }
+        labels = {
+            'bio': 'Biografía',
+        }
+        required = {
+            'image': False,
+            'bio': False,
+            'fondo': False,
+            'profession': False,
+            'phone_number': False,
+            'country': False,
+            'gender': False,
+        }
+
 
 
 

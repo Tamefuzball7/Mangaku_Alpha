@@ -9,11 +9,11 @@
             <img id="portada" src="{{ user.profile.fondo.url }}" />
             <div class="left_row_profile">
                 <img id="profile_pic" src="{{ user.profile.image.url }}" />
-                <span>{{ user.first_name }} {{ user.last_name }}<br>@{{ user }}<br><p> {{ user.profile.followers.count }} followers / {{ user.profile.following.count }} follow</p></span>
+                <span>{{ user.first_name }} {{ user.last_name }}<br>@{{ user }}<br><p> {{ user.profile.followers.count }} Seguidores / {{ user.profile.following.count }} Seguidos</p></span>
                 {% if request.user.is_authenticated %}
                     {% if user.username != request.user.username %}
                         {% if user not in request.user.profile.following %}
-                        <span><a href="{% url 'follow' user %}">Seguir</a></span>
+                        <span><a  href="{% url 'follow' user %}">Seguir</a></span>
                         {% else %}
                         <span><a href="{% url 'unfollow' user %}">Siguiendo</a></span>
                         {% endif %}
@@ -59,7 +59,7 @@
         <div class="row shadow">
             <div class="row_title">
                 <span>Ultimas fotos</span>
-                <a href="#">Mostrar todo</a>
+                <a href="{% url 'fotos' user%}">Mostrar todo</a>
             </div>
             <div class="row_contain_profilephotos">
                 <ul>

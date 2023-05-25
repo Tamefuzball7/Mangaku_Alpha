@@ -289,7 +289,7 @@ html, body {background-color: #EDF2F6;font-family: 'Roboto', sans-serif;height:1
 
 /* FEED PAGE */
 .feedcomments {width: 100%;border-top: 1px solid #FF9933;}
-.feedcomments li{width: 100%;display: block;border-bottom: 0.3px solid #e6ecf5;}
+.feedcomments li{width: 100%;display: block;border-bottom: 0.2px solid #e6ecf5;}
 .feedcomments-user {width: 90%;display: flex;align-items:center;margin: 10px auto;}
 .feedcomments-user img {width:30px;height:30px;border-radius: 100%;background-image: url('../img/default-user.png');background-size: contain;background-repeat: no-repeat;background-position: center;}
 .feedcomments-user img::before {

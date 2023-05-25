@@ -6,14 +6,18 @@
             <img src="{{ post.user.profile.image.url }}" alt="" />
             <a href="{% url 'profile' post.user %}"><span><b>{{ post.user.first_name }} {{ post.user.last_name }}</b><p>{{ post.timestamp|naturaltime }}</p></span></a>
         </div>
+
+        <a href="{% url 'comentarios' post.user.username post.id %}">
         <div class="feed_content">
             <div class="feed_content_image">
                 <p>{{ post.content }}</p>
             </div>
         </div>
+        </a>
+        
         <div class="feed_footer">
             <ul class="feed_footer_left">
-                <li class="hover-orange selected-orange">
+                <li class="hover-orange">
                     <a id="like-form" href="{% url 'like_post' post.id %}">
                         {% if request.user in post.likes.all %}
                             <i class="fa fa-heart"></i> 
@@ -27,8 +31,10 @@
                 </li>
             </ul>
             <ul class="feed_footer_right">
-                {% if request.user == post.user %}
-                    <li><a href="{% url 'delete' post.id %}" style="color:#515365;"><i class="fa fa-trash-o"></i></a></li>
+                {% if request.user ==  post.user %}
+                    <a href="{% url 'delete' post.id %}" style="color:#515365;"><li class="hover-orange"><i class="fa fa-trash"></i></li></a></li>
+                {% else %}
+                    
                 {% endif %}
                 {% if post.user == request.user %}
                 <!-- No mostrar el elemento si el post fue publicado por el mismo usuario -->
@@ -36,7 +42,7 @@
                 <li class="hover-orange"><i class="fa fa-gift"></i></li>
                 {% endif %}
                 <a href="{% url 'comentarios' post.user.username post.id %}" style="color:#515365;">
-                    <li class="hover-orange"><i class="fa fa-comments-o"></i></li>
+                    <li class="hover-orange"><i class="fa fa-comment"></i></li>
                 </a>
                 <li class="hover-orange "><i class="fa fa-share"></i></li>
             </ul>
@@ -46,7 +52,11 @@
                 <li>
                     <div class="feedcomments-user">
                         <img src="{{ request.user.profile.image.url }}" />
-                        <span><b><textarea placeholder="Escribe un comentario" name="" id="" cols="60" rows="2.5"></textarea></b></span>
+                        <form method="post" action="{% url 'comentarios' user.username post.id %}">
+                            {% csrf_token %}
+                            <span><b><textarea placeholder="Escribe un comentario" name="content" id="" cols="60" rows="2.5"></textarea></b></span>
+                            <button class="hover-orange" type="submit"><i class="fa fa-paper-plane"></i></button>
+                        </form>
                     </div>
                     <div class="feedcomments-comment">
                         

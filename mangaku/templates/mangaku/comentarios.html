@@ -11,12 +11,12 @@
             <img id="portada" src="{{ request.user.profile.fondo.url }}" />
             <div class="left_row_profile">
                 <img id="profile_pic" src="{{ request.user.profile.image.url }}" />
-                <span>{{ request.user.first_name }}<br><p> {{ request.user.profile.followers.count }} followers  /  {{ request.user.profile.following.count }} follow</p></span>
+                <span>{{ request.user.first_name }}<br><p> {{ request.user.profile.followers.count }} Seguidores  /  {{ request.user.profile.following.count }} Seguidos</p></span>
             </div>
         </div>
         <div class="rowmenu">
             <ul>
-                <li><a href="{% url 'home' %}" id="rowmenu-selected"><i class="fa fa-globe"></i>Inicio</a></li>
+                <li><a href="{% url 'home' %}" ><i class="fa fa-globe"></i>Inicio</a></li>
                 <li><a href="{% url 'profile' user %}"><i class="fa fa-user"></i>Perfil</a></li>
                 <li><a href="#" ><i class="fa fa-users"></i>Grupos</a></li>
                 <li><a href="friends.html"><i class="fa fa-comments-o"></i>Mensajes</a></li>
@@ -46,7 +46,7 @@
                         <li class="hover-orange selected-orange">
                             <a id="like-form" href="{% url 'like_post' post.id %}">
                                 {% if request.user in post.likes.all %}
-                                    <i class="fa fa-heart"></i> 
+                                    <i  class="fa fa-heart"></i> 
                                 {% else %}
                                     <i class="fa fa-heart-o"></i> 
                                 {% endif %}
@@ -63,7 +63,7 @@
                         {% if post.user != request.user %}
                             <li class="hover-orange"><i class="fa fa-gift"></i></li>
                         {% endif %}
-                            <li class="hover-orange"><i class="fa fa-comments-o"></i></li>
+                            <li class="hover-orange"><i class="fa fa-comment"></i></li>
                         <li class="hover-orange "><i class="fa fa-share"></i></li>
                     </ul>
                 </div>
@@ -72,9 +72,26 @@
                         <li>
 
                             {% for comment in comments %}
+                            <div class="feedcomments">
                             <div class="feedcomments-user">
                                 <img src="{{ comment.user.profile.image.url }}" />
-                                <span>@{{comment.user.username }} : <b>{{ comment.content }}</b></span>
+                                <span><b>{{comment.user.first_name }} {{comment.user.last_name }}</b><br><p>@{{ comment.user.username }} {{ comment.user.created_at|naturaltime }}</p></span>
+                            </div>
+                            <div class="feedcomments-comment">
+                                <p>{{ comment.content }}</p>
+                            </div>
+                            <div class="feedcomments-foot">
+                                <i class="fa fa-heart"></i><span> likes</span>
+                                <p><a href="#"><i class="fa fa-reply"></i></a></p>
+                                <p>{% if comment.user == request.user %}
+                                    <!-- Mostrar botón de eliminación -->
+                                    <a href="{% url 'delete_comment' post_id=post.id comment_id=comment.id %}"><i class="fa fa-trash-o"></i></a>
+                                    {% endif %}</p>
+                                <p>{% if comment.user == request.user %}
+                                    <!-- Mostrar botón de edición -->
+                                    <a href="{% url 'editar_comentario' username=user.username post_id=post.id comment_id=comment.id %}"><i class="fa fa-pencil"></i></a>
+                                    {% endif %}</p>
+                            </div>
                             </div>
                             {% endfor %}
                             <div class="feedcomments-user">
@@ -82,7 +99,7 @@
                                 <form method="post" action="{% url 'comentarios' user.username post.id %}">
                                     {% csrf_token %}
                                     <span><b><textarea placeholder="Escribe un comentario" name="content" id="" cols="60" rows="2.5"></textarea></b></span>
-                                    <button type="submit">Comentar</button>
+                                    <button class="hover-orange" type="submit"><i class="fa fa-paper-plane"></i></button>
                                 </form>
                             </div>
                             <div class="feedcomments-comment">
