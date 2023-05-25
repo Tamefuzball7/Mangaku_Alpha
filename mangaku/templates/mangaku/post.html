@@ -1,4 +1,6 @@
 {% load humanize %}
+{% load static %}
+
 {% for post in posts %}
 <div class="row border-radius">
     <div class="feed">
@@ -11,6 +13,9 @@
         <div class="feed_content">
             <div class="feed_content_image">
                 <p>{{ post.content }}</p>
+                {% if post.imagen %}
+                <img src="{{ post.imagen.url }}" alt="{{ post.user.profile.username }}">
+                {% endif %}
             </div>
         </div>
         </a>
@@ -27,7 +32,19 @@
                     </a>
                 </li>
                 <li>
-                    <span>A <b>{{ post.total_likes }}</b> personas les gusta esto</span>
+                    <span>A <b>{{ post.total_likes }}</b> Le Gusta</span>
+                </li>
+                <li class="hover-orange">
+                    <a id="like-form" href="{% url 'dislike_post' post.id %}">
+                        {% if request.user in post.dislikes.all %}
+                            <i class="fa fa-thumbs-down"></i> 
+                        {% else %}
+                            <i class="fa fa-thumbs-o-down"></i> 
+                        {% endif %}
+                    </a>
+                </li>
+                <li>
+                    <span>A <b>{{ post.total_dislikes }}</b> Le Disgusta</span>
                 </li>
             </ul>
             <ul class="feed_footer_right">
@@ -66,4 +83,5 @@
         </div>
     </div>
 </div>
+
 {% endfor %}

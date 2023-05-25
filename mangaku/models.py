@@ -7,8 +7,8 @@ from django.dispatch import receiver
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.CharField(default="", blank=True, max_length=200)
-    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
-    fondo = models.ImageField(default='default.jpg', upload_to='profile_fondos')
+    image = models.ImageField(default='', upload_to='profile_pics')
+    fondo = models.ImageField(default='', upload_to='profile_fondos')
     profession = models.CharField( max_length=100, blank=True )
     phone_number = models.CharField( max_length=20, blank=True)
     country = models.CharField( max_length=100, blank=True)
@@ -38,6 +38,7 @@ def create_profile(sender, instance, created, **kwargs):
 
 class Post(models.Model):
     timestamp = models.DateTimeField(default=timezone.now)
+    imagen = models.ImageField(default="", upload_to='image_posts')  # Campo de imagen
     content = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
     comments = models.ManyToManyField(User, through='Comment', related_name='commented_posts')
@@ -50,7 +51,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.content
-
+    
     def total_likes(self):
         return self.likes.count()
 

@@ -9,12 +9,22 @@ https://docs.djangoproject.com/en/3.1/howto/deployment/asgi/
 
 import os
 from django.core.asgi import get_asgi_application
-
+from channels.routing import ProtocolTypeRouter, URLRouter
+from mangaku.routing import websocket_urlpatterns
+from django.conf import settings
+from django.contrib.staticfiles.handlers import ASGIStaticFilesHandler
+from django.core.asgi import get_asgi_application
+from channels.auth import AuthMiddlewareStack
 
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'social_project.settings')
 
-application = get_asgi_application()
+application = ProtocolTypeRouter(
+    {
+        'http': get_asgi_application(),
+        'websocket': URLRouter(websocket_urlpatterns),
+    }
+)
 
 
 

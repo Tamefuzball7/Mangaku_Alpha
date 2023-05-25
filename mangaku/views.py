@@ -6,13 +6,17 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from random import sample
 from django.http import HttpResponse ,JsonResponse
+from django.db import models
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
+
 
 
 @login_required
 def home(request):
     posts = Post.objects.all()
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user
@@ -166,6 +170,13 @@ def search(request):
     query = request.GET.get('q')
     profiles = Profile.objects.filter(user__username__icontains=query)
     return render(request, 'mangaku/search.html', {'profiles': profiles})
+
+
+
+@receiver(pre_delete, sender=Post)
+def eliminar_archivo(sender, instance, **kwargs):
+    # Eliminar el archivo asociado al post
+    instance.imagen.delete(save=False)
 
 
 

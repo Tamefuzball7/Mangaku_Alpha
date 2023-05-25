@@ -18,11 +18,22 @@ class UserRegisterForm(UserCreationForm):
 
 
 class PostForm(forms.ModelForm):
-	content = forms.CharField()
+    content = forms.CharField(required=False)
+    imagen = forms.ImageField(required=False)
 
-	class Meta:
-		model = Post
-		fields = ['content']
+    def clean(self):
+        cleaned_data = super().clean()
+        content = cleaned_data.get('content')
+        imagen = cleaned_data.get('imagen')
+
+        if not content and not imagen:
+            raise forms.ValidationError('Debes subir al menos una imagen o ingresar un contenido.')
+
+        return cleaned_data
+
+    class Meta:
+        model = Post
+        fields = ['content', 'imagen']
 
 class UserUpdateForm(forms.ModelForm):
 	class Meta:
@@ -34,7 +45,7 @@ class ProfileUpdateForm(forms.ModelForm):
         model = Profile
         fields = ['image', 'bio', 'fondo', 'profession', 'phone_number', 'country', 'gender']
         widgets = {
-            'bio': forms.Textarea(attrs={'rows': 4}),
+            'bio': forms.Textarea(),
         }
         labels = {
             'bio': 'Biografía',

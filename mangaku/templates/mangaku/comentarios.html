@@ -39,21 +39,36 @@
                 <div class="feed_content">
                     <div class="feed_content_image">
                         <p>{{ post.content }}</p>
+                        {% if post.imagen %}
+                        <img src="{{ post.imagen.url }}" alt="{{ post.titulo }}">
+                        {% endif %}
                     </div>
                 </div>
                 <div class="feed_footer">
                     <ul class="feed_footer_left">
-                        <li class="hover-orange selected-orange">
+                        <li class="hover-orange">
                             <a id="like-form" href="{% url 'like_post' post.id %}">
                                 {% if request.user in post.likes.all %}
-                                    <i  class="fa fa-heart"></i> 
+                                    <i class="fa fa-heart"></i> 
                                 {% else %}
                                     <i class="fa fa-heart-o"></i> 
                                 {% endif %}
                             </a>
                         </li>
                         <li>
-                            <span>A <b>{{ post.total_likes }}</b> personas les gusta esto</span>
+                            <span>A <b>{{ post.total_likes }}</b> personas les gusta</span>
+                        </li>
+                        <li class="hover-orange">
+                            <a id="like-form" href="{% url 'dislike_post' post.id %}">
+                                {% if request.user in post.dislikes.all %}
+                                    <i class="fa fa-thumbs-down"></i> 
+                                {% else %}
+                                    <i class="fa fa-thumbs-o-down"></i> 
+                                {% endif %}
+                            </a>
+                        </li>
+                        <li>
+                            <span>A <b>{{ post.total_dislikes }}</b> personas les gusta</span>
                         </li>
                     </ul>
                     <ul class="feed_footer_right">
