@@ -1,5 +1,5 @@
 {% extends 'mangaku/layout.html' %}
-
+{% load static %}
 {% block content %}
 {% include 'mangaku/navbar.html'   %}
 
@@ -29,19 +29,19 @@
 
 
 <div class="right_row" style="width:80%;">
-
   <div class="row border-radius">
       <div class="friend">
-          <div class="friend_title">
-              <img src="images/user-7.jpg" alt="" />
-              <span><b>Tamara Romanoff</b><br><p>4 Friends in Common</p></span>
-              <button class="add-friend">Add</button>
-          </div>
-          <div class="friend_title">
-              <img src="images/user-3.jpg" alt="" />
-              <span><b>Stagg Clothing</b><br><p>Mutual Friend: Tony Stevens</p></span>
-              <button class="delete-friend">Delete</button>
-          </div>
+        {% for profile in profiles %}
+        <div class="friend_title">
+            <img src="{{ profile.image.url }}" alt="{{ profile.username }}" />
+            <span><b>{{ profile.user.first_name }} {{ profile.user.last_name }}</b><br>@{{ profile.user.username }}<p> Amigos en común</p></span>
+            <button class="add-friend">Add</button>
+            
+            
+        </div>
+      {% endfor %}
+         
+
       </div>
   </div>
 

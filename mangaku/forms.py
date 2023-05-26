@@ -5,6 +5,7 @@ from .models import Post, Profile
 
 
 
+
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
     profession = forms.CharField(max_length=100)
@@ -20,6 +21,7 @@ class UserRegisterForm(UserCreationForm):
 class PostForm(forms.ModelForm):
     content = forms.CharField(required=False)
     imagen = forms.ImageField(required=False)
+    
 
     def clean(self):
         cleaned_data = super().clean()
@@ -33,7 +35,7 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ['content', 'imagen']
+        fields = ['content', 'imagen' ]
 
 class UserUpdateForm(forms.ModelForm):
 	class Meta:

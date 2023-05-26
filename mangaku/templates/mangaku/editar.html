@@ -10,7 +10,11 @@
             <img id="portada" src="{{ request.user.profile.fondo.url }}" />
             <div class="left_row_profile">
                 <img id="profile_pic" src="{{ request.user.profile.image.url }}" />
-                <span>{{ request.user.first_name }} {{ request.user.last_name }}<br><p> {{ request.user.profile.followers.count }} Seguidores  /  {{ request.user.profile.following.count }} Seguidos</p></span>
+                <span>{{ request.user.first_name }} {{ request.user.last_name }}
+                    {% if user.profile.verificado %}
+                    <i class="fa fa-check-circle"></i>
+                    {% endif %}
+                    <br>@{{ user }}<p><b>{{ request.user.profile.followers.count }}</b> Seguidores  |  <b>{{ request.user.profile.following.count }}</b> Seguidos</p></span>
             </div>
         </div>
         <div class="rowmenu">
@@ -60,25 +64,14 @@
                         <div class="pi-input pi-input-lg">
                             <span>Foto de perfil</span>
                             {{ p_form.image }}
-                            
                         </div>
-                        <div class="pi-input pi-input-md">
+                        <div class="pi-input pi-input-lg">
                             <span>Pais</span>
-                            {{ p_form.country }} 
+                            {{ p_form.country }}
                         </div>
-                        <div class="pi-input pi-input-md">
-                            <span>Your State / Province</span>
-                            <select>
-                                <option selected>California</option>
-                                <option>Texas</option>
-                            </select>
-                        </div>
-                        <div class="pi-input pi-input-md">
-                            <span>ciudad</span>
-                            <select>
-                                <option selected>San Francisco</option>
-                                <option>New York</option>
-                            </select>
+                        <div class="pi-input pi-input-lg">
+                            <span>Cumpleaños</span>
+                            <input type="date" name="birthday" value="{{ user.profile.birthday|date:'Y-m-d' }}" />
                         </div>
                         <div class="pi-input pi-input-lg">
                             <span>Genero</span>
@@ -118,7 +111,7 @@
                         <a href="settings.html">Confiduracion de cuenta</a>
                     </li>
                     <li>
-                        <a href="Change_Password.html">Cambiar contraseña</a>
+                        <a href="{% url 'change_password' %}">Cambiar contraseña</a>
                     </li>
                 </ul>
             </div>

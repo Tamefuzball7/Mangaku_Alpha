@@ -11,7 +11,9 @@
             <img id="portada" src="{{ request.user.profile.fondo.url }}" />
             <div class="left_row_profile">
                 <img id="profile_pic" src="{{ request.user.profile.image.url }}" />
-                <span>{{ request.user.first_name }}<br><p> {{ request.user.profile.followers.count }} Seguidores  /  {{ request.user.profile.following.count }} Seguidos</p></span>
+                <span>{{ request.user.first_name }} {{ request.user.last_name }}<br>
+                    @{{ request.user }} 
+                    <p> <b>{{ request.user.profile.followers.count }}</b> Seguidores  |  <b>{{ request.user.profile.following.count }}</b> Seguidos</p></span>
             </div>
         </div>
         <div class="rowmenu">
@@ -19,7 +21,7 @@
                 <li><a href="{% url 'home' %}" ><i class="fa fa-globe"></i>Inicio</a></li>
                 <li><a href="{% url 'profile' user %}"><i class="fa fa-user"></i>Perfil</a></li>
                 <li><a href="#" ><i class="fa fa-users"></i>Grupos</a></li>
-                <li><a href="friends.html"><i class="fa fa-comments-o"></i>Mensajes</a></li>
+                <li><a href="{% url 'chat' user %}"><i class="fa fa-comments-o"></i>Mensajes</a></li>
                 <li><a href="{% url 'editar' %}"><i class="fa fa-tasks"></i>Editar perfil</a></li>
                 <li><a href="friends.html"><i class="fa fa-cogs"></i>Configuracion</a></li>
             </ul>
@@ -34,7 +36,13 @@
             <div class="feed">
                 <div class="feed_title">
                     <img src="{{ post.user.profile.image.url }}" alt="" />
-                    <a href="{% url 'profile' post.user %}"><span><b>{{ post.user.first_name }} {{ post.user.last_name }}</b><p>{{ post.timestamp|naturaltime }}</p></span></a>
+                    <a href="{% url 'profile' post.user %}"><span><b>{{ post.user.first_name }} {{ post.user.last_name }}
+                        {% if user.profile.verificado %}
+                        <i class="fa fa-check-circle"></i>
+                        {% endif %}
+                    </b>
+                    @{{ user }}
+                    <p>{{ post.timestamp|naturaltime }}</p></span></a>
                 </div>
                 <div class="feed_content">
                     <div class="feed_content_image">
@@ -56,7 +64,7 @@
                             </a>
                         </li>
                         <li>
-                            <span>A <b>{{ post.total_likes }}</b> personas les gusta</span>
+                            <span>A <b>{{ post.total_likes }} </b>les gusta</span>
                         </li>
                         <li class="hover-orange">
                             <a id="like-form" href="{% url 'dislike_post' post.id %}">
@@ -68,7 +76,7 @@
                             </a>
                         </li>
                         <li>
-                            <span>A <b>{{ post.total_dislikes }}</b> personas les gusta</span>
+                            <span>A <b>{{ post.total_dislikes }} </b>les disgusta</span>
                         </li>
                     </ul>
                     <ul class="feed_footer_right">
@@ -86,17 +94,44 @@
                     <ul>
                         <li>
 
+                            <div class="feedcomments-user">
+                                <img src="{{ request.user.profile.image.url }}" />
+                                <form method="post" action="{% url 'comentarios' user.username post.id %}">
+                                    {% csrf_token %}
+                                    <span><b><textarea placeholder="Escribe un comentario" name="content" id="" cols="60" rows="2.5"></textarea></b></span>
+                                    <button class="hover-orange" type="submit"><i class="fa fa-paper-plane"></i></button>
+                                </form>
+                            </div>
+
                             {% for comment in comments %}
                             <div class="feedcomments">
                             <div class="feedcomments-user">
                                 <img src="{{ comment.user.profile.image.url }}" />
-                                <span><b>{{comment.user.first_name }} {{comment.user.last_name }}</b><br><p>@{{ comment.user.username }} {{ comment.user.created_at|naturaltime }}</p></span>
+                                <span><b>{{comment.user.first_name }} {{comment.user.last_name }}
+                                    {% if comment.user.profile.verificado %}
+                                    <i class="fa fa-check-circle"></i>
+                                {% endif %}
+                                </b>@{{ comment.user.username }}<br>{{ comment.created_at|naturaltime }}</span>
                             </div>
                             <div class="feedcomments-comment">
                                 <p>{{ comment.content }}</p>
                             </div>
                             <div class="feedcomments-foot">
-                                <i class="fa fa-heart"></i><span> likes</span>
+                                <a id="like-form" href="{% url 'like_comment' comment.id %}">
+                                    {% if request.user in comment.likes.all %}
+                                      <i class="fa fa-thumbs-up"></i>
+                                    {% else %}
+                                      <i class="fa fa-thumbs-o-up"></i>
+                                    {% endif %}
+                                  </a><span>{{ comment.likes.count }}</span>
+                                  
+                                  <a id="dislike-form" href="{% url 'dislike_comment'  comment.id %}">
+                                    {% if request.user in comment.dislikes.all %}
+                                      <i class="fa fa-thumbs-down"></i>
+                                    {% else %}
+                                      <i class="fa fa-thumbs-o-down"></i>
+                                    {% endif %}
+                                  </a><span>{{ comment.dislikes.count }}</span>
                                 <p><a href="#"><i class="fa fa-reply"></i></a></p>
                                 <p>{% if comment.user == request.user %}
                                     <!-- Mostrar botón de eliminación -->
@@ -109,14 +144,7 @@
                             </div>
                             </div>
                             {% endfor %}
-                            <div class="feedcomments-user">
-                                <img src="{{ request.user.profile.image.url }}" />
-                                <form method="post" action="{% url 'comentarios' user.username post.id %}">
-                                    {% csrf_token %}
-                                    <span><b><textarea placeholder="Escribe un comentario" name="content" id="" cols="60" rows="2.5"></textarea></b></span>
-                                    <button class="hover-orange" type="submit"><i class="fa fa-paper-plane"></i></button>
-                                </form>
-                            </div>
+
                             <div class="feedcomments-comment">
                                 
                             </div>

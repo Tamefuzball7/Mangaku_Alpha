@@ -6,7 +6,14 @@
     <div class="feed">
         <div class="feed_title">
             <img src="{{ post.user.profile.image.url }}" alt="" />
-            <a href="{% url 'profile' post.user %}"><span><b>{{ post.user.first_name }} {{ post.user.last_name }}</b><p>{{ post.timestamp|naturaltime }}</p></span></a>
+            <a href="{% url 'profile' post.user %}"><span><b>{{ post.user.first_name }} {{ post.user.last_name }}
+                {% if post.user.profile.verificado %}
+                <i class="fa fa-check-circle"></i>
+            {% endif %}
+
+            </b>
+            @{{ post.user.username }}
+            <p>{{ post.timestamp|naturaltime }}</p></span></a>
         </div>
 
         <a href="{% url 'comentarios' post.user.username post.id %}">

@@ -317,7 +317,7 @@ html, body {background-color: #EDF2F6;font-family: 'Roboto', sans-serif;height:1
 /* FRIENDS PAGE */
 .friend {width: 100%;}
 .friend_title {padding: 20px;border-bottom: 1px solid #e6ecf5;letter-spacing: 1px;display: flex;align-items:center;}
-.friend_title img {height: 40px;width:40px;border-radius: 200px;margin: 0px 10px;}
+.friend_title img {height: 40px;width:40px;border-radius: 200px;margin: 0px 10px;background-image: url('../img/default-user.png');background-size: contain;background-repeat: no-repeat;background-position: center;}
 .friend_title span {font-size: .875rem;padding-left: 20px;width: 75%}
 .friend_title span b {color: #38A9FF;}
 .friend_title span p {font-size: .675rem;}

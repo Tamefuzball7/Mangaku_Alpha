@@ -1,19 +1,19 @@
-{% include 'mangaku/navbar.html'   %}
+
 {% load static %}
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mangaku</title>
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"  type="text/css" />
-  
-  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/login/util.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/login/main.css' %}">
-  <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixMingle</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"  type="text/css" />
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login/main.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
 </head>
-
+{% include 'mangaku/navbar.html'   %}
 <div class="all">
     <div class="rowfixed"></div>
     <div class="left_row">
@@ -21,7 +21,11 @@
             <img id="portada" src="{{ user.profile.fondo.url }}" />
             <div class="left_row_profile">
                 <img id="profile_pic" src="{{ user.profile.image.url }}" />
-                <span>{{ user.first_name }} {{ request.user.last_name }}<br>@{{ user }}<br><p> {{ user.profile.followers.count }} Seguidores / {{ user.profile.following.count }} Seguidos</p></span>
+                <span>{{ user.first_name }} {{ request.user.last_name }}
+                    {% if user.profile.verificado %}
+                    <i class="fa fa-check-circle"></i>
+                    {% endif %}
+                    <br>@{{ user }}<br><p> <b>{{ user.profile.followers.count }}</b> Seguidores | <b>{{ user.profile.following.count }}</b> Seguidos</p></span>
             </div>
         </div>
         <div class="rowmenu">
@@ -29,7 +33,7 @@
                 <li><a href="{% url 'home' %}" ><i class="fa fa-globe"></i>Inicio</a></li>
                 <li><a href="{% url 'profile' user %}" ><i class="fa fa-user"></i>Perfil</a></li>
                 <li><a href="#" ><i class="fa fa-users"></i>Grupos</a></li>
-                <li><a href="friends.html" id="rowmenu-selected"><i class="fa fa-comments-o"></i>Mensajes</a></li>
+                <li><a href="{% url 'chat' user %}" id="rowmenu-selected"><i class="fa fa-comments-o"></i>Mensajes</a></li>
                 <li><a href="{% url 'editar' %}"><i class="fa fa-tasks"></i>Editar perfil</a></li>
                 <li><a href="friends.html"><i class="fa fa-cogs"></i>Configuracion</a></li>
             </ul>

@@ -3,7 +3,8 @@ from .models import Profile, Post, Relationship, Comment
 from .forms import UserRegisterForm, PostForm, ProfileUpdateForm, UserUpdateForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm , PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 from random import sample
 from django.http import HttpResponse ,JsonResponse
 from django.db import models
@@ -12,8 +13,10 @@ from django.dispatch import receiver
 
 
 
+
 @login_required
 def home(request):
+    user = request.user
     posts = Post.objects.all()
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
@@ -25,8 +28,8 @@ def home(request):
     else:
         form = PostForm()
 
-    context = {'posts': posts, 'form': form}
-    return render(request, 'mangaku/newsfeed.html', context)
+    context = {'posts': posts, 'form': form,'user': user }
+    return render(request, 'mangaku/newsfeed.html', context    )
 
 def register(request):
 	if request.method == 'POST':
@@ -60,6 +63,10 @@ def editar(request):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
+            birthday = request.POST.get('birthday')
+            request.user.profile.birthday = birthday
+            request.user.profile.save()
+
             return redirect('editar')
     else:
         u_form = UserUpdateForm(instance=request.user)
@@ -67,6 +74,7 @@ def editar(request):
 
     context = {'u_form': u_form, 'p_form': p_form}
     return render(request, 'mangaku/editar.html', context)
+
 
 @login_required
 def follow(request, username):
@@ -100,7 +108,7 @@ def like_post(request, post_id):
         post.likes.remove(request.user)
     else:
         post.likes.add(request.user)
-        post.dislikes.remove(request.user)  # Eliminar dislike si existe
+        post.dislikes.remove(request.user) 
     return redirect('home')
 
 @login_required
@@ -110,7 +118,7 @@ def dislike_post(request, post_id):
         post.dislikes.remove(request.user)
     else:
         post.dislikes.add(request.user)
-        post.likes.remove(request.user)  # Eliminar like si existe
+        post.likes.remove(request.user) 
     return redirect('home')
 
 @login_required
@@ -148,14 +156,14 @@ def editar_comentario(request, username, post_id, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
 
     if comment.user != request.user:
-        # Si el comentario no pertenece al usuario autenticado, mostrar un mensaje de error o redirigir a otra página
+        
         return HttpResponse('No tienes permiso para editar este comentario.')
 
     if request.method == 'POST':
         content = request.POST.get('content')
         comment.content = content
         comment.save()
-        # Redirigir a la página de comentarios o hacer cualquier otra acción después de guardar los cambios
+        
 
     context = {'user': User, 'post': Post, 'comment': comment}
     return render(request, 'mangaku/editar_comentario.html', context)
@@ -177,6 +185,41 @@ def search(request):
 def eliminar_archivo(sender, instance, **kwargs):
     # Eliminar el archivo asociado al post
     instance.imagen.delete(save=False)
+
+
+@login_required
+def like_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    
+    if request.user in comment.likes.all():
+        comment.likes.remove(request.user)
+    else:
+        comment.likes.add(request.user)
+        comment.dislikes.remove(request.user)  
+        return redirect('home')
+
+@login_required
+def dislike_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    
+    if request.user in comment.dislikes.all():
+        comment.dislikes.remove(request.user)
+    else:
+        comment.dislikes.add(request.user)
+        comment.likes.remove(request.user)  
+        return redirect('home')
+    
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            return redirect('home')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'mangaku/change_password.html', {'form': form})
 
 
 

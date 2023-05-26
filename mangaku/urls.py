@@ -5,7 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
 from .views import about
-
+from .views import search 
 
 
 
@@ -32,7 +32,11 @@ urlpatterns = [
     path('comentarios/<str:username>/<int:post_id>/editar/<int:comment_id>/', views.editar_comentario, name='editar_comentario'),
 	path('delete/<int:post_id>/<int:comment_id>/', views.delete_comment, name='delete_comment'),
     path('search/', views.search, name='search'),
-
+    path('like/<int:post_id>/', views.like_post, name='like_post'),
+    path('dislike/<int:post_id>/', views.dislike_post, name='dislike_post'),
+    path('like_comment/<int:comment_id>/', views.like_comment, name='like_comment'),
+    path('dislike_comment/<int:comment_id>/', views.dislike_comment, name='dislike_comment'),
+    path('change_password/', views.change_password, name='change_password'),
     
     
     
