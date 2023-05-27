@@ -7,7 +7,8 @@ from django.contrib.auth.forms import UserCreationForm , PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from random import sample
 from django.http import HttpResponse ,JsonResponse
-from django.db import models
+from django.db.models import Q, Case, When , F
+from django.contrib.postgres.search import TrigramSimilarity 
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 
@@ -173,12 +174,26 @@ def delete_comment(request, post_id, comment_id):
     comment.delete()
     return redirect('home')
 
+
 @login_required
 def search(request):
     query = request.GET.get('q')
-    profiles = Profile.objects.filter(user__username__icontains=query)
-    return render(request, 'mangaku/search.html', {'profiles': profiles})
+    profiles = []
 
+    if query:
+        profiles = Profile.objects.annotate(
+            similarity=TrigramSimilarity('user__username', query) +
+                       TrigramSimilarity('user__first_name', query) +
+                       TrigramSimilarity('user__last_name', query)
+        ).filter(
+            Q(user__username__icontains=query) |
+            Q(user__first_name__icontains=query) |
+            Q(user__last_name__icontains=query)
+        ).order_by(
+            Case(When(similarity__gt=0.1, then=-1*F('similarity')), default=-1*F('similarity'))
+        )
+
+    return render(request, 'mangaku/search.html', {'profiles': profiles})
 
 
 @receiver(pre_delete, sender=Post)
