@@ -46,7 +46,6 @@ class Post(models.Model):
     comments = models.ManyToManyField(User, through='Comment', related_name='commented_posts')
     likes = models.ManyToManyField(User, related_name='liked_posts', blank=True)
     dislikes = models.ManyToManyField(User, related_name='disliked_posts', blank=True)
-    
 
     class Meta:
         ordering = ['-timestamp']

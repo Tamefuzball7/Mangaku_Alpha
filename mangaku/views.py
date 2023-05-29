@@ -12,13 +12,11 @@ from django.contrib.postgres.search import TrigramSimilarity
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 
-
-
-
 @login_required
 def home(request):
     user = request.user
     posts = Post.objects.all()
+
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
@@ -29,8 +27,17 @@ def home(request):
     else:
         form = PostForm()
 
-    context = {'posts': posts, 'form': form,'user': user }
-    return render(request, 'mangaku/newsfeed.html', context    )
+    # Obtener 3 usuarios aleatorios excluyendo al perfil en uso
+    usuarios_aleatorios = User.objects.exclude(id=user.id).order_by('?')[:3]
+
+    context = {
+        'posts': posts,
+        'form': form,
+        'user': user,
+        'usuarios_aleatorios': usuarios_aleatorios
+    }
+
+    return render(request, 'mangaku/newsfeed.html', context)
 
 def register(request):
 	if request.method == 'POST':
@@ -211,7 +218,7 @@ def like_comment(request, comment_id):
     else:
         comment.likes.add(request.user)
         comment.dislikes.remove(request.user)  
-        return redirect('home')
+        return redirect(request 'mangaku/comentarios.html')
 
 @login_required
 def dislike_comment(request, comment_id):
@@ -222,7 +229,7 @@ def dislike_comment(request, comment_id):
     else:
         comment.dislikes.add(request.user)
         comment.likes.remove(request.user)  
-        return redirect('home')
+        return redirect( request 'mangaku/comentarios.html')
     
 @login_required
 def change_password(request):
@@ -235,6 +242,11 @@ def change_password(request):
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'mangaku/change_password.html', {'form': form})
+
+
+
+
+
 
 
 

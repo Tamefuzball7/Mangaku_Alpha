@@ -66,7 +66,6 @@
         </div>
 
         {% include 'mangaku/post.html'   %}
-
         
 
         
@@ -83,9 +82,28 @@
                 <span>Artistas sugeridos</span>
                 <a href="">Mostrar Más</a>
             </div>
-            <div class="row_contain" id="suggested-users">
-                <!-- Aquí se cargarán los usuarios sugeridos -->
+            {% for usuario in usuarios_aleatorios %}
+            <div class="row_contain">
+                <img src="{{ usuario.profile.image.url }}" alt="" />
+                <span><b>{{ usuario.first_name }} {{ usuario.last_name }}</b><br>@{{ usuario.username }}</span>
+
+                {% if request.user.is_authenticated %}
+                {% if usuario.username != request.usuario.username %}
+                    {% if usuario not in request.user.profile.following %}
+                    <button><a  href="{% url 'follow' usuario.username %}">Seguir</a></button>
+                    {% else %}
+                    <button><a href="{% url 'unfollow' usuario.username %}">Siguiendo</a></button>
+                    {% endif %}
+                {% endif %}
+                {% endif %}
+
+        
+            
             </div>
+            {% endfor %}
+            
+        
+        
         </div>
     </div>
     
