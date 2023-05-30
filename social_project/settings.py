@@ -86,14 +86,17 @@ CHANNEL_LAYERS = {
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+
+PGPASSWORD= psql -h  -U  -p  -d 
+PGPASSWORD=HMujk9yzrKeDq7wK5J2l psql -h containers-us-west-83.railway.app -U postgres -p 5543 -d railway
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': '202001',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'PASSWORD': 'HMujk9yzrKeDq7wK5J2l',
+        'HOST': 'containers-us-west-83.railway.app',
+        'PORT': '5543',
         'OPTIONS': {
             'isolation_level': psycopg2.extensions.ISOLATION_LEVEL_REPEATABLE_READ,
         },
