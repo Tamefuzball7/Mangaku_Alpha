@@ -84,9 +84,13 @@
             </div>
             {% for usuario in usuarios_aleatorios %}
             <div class="row_contain">
-                <img src="{{ usuario.profile.image.url }}" alt="" />
-                <span><b>{{ usuario.first_name }} {{ usuario.last_name }}</b><br>@{{ usuario.username }}</span>
-
+                <img href="{% url 'profile' usuario.username %}"  src="{{ usuario.profile.image.url }}" alt="" />
+                <span><a href="{% url 'profile' usuario.username %}">{{ usuario.first_name }} {{ usuario.last_name }}
+                    {% if usuario.profile.verificado %}
+                    <i class="fa fa-check-circle"></i>
+                    {% endif %}
+                </a><br> @{{ usuario.username }}</span>
+                
                 {% if request.user.is_authenticated %}
                 {% if usuario.username != request.usuario.username %}
                     {% if usuario not in request.user.profile.following %}
@@ -96,21 +100,11 @@
                     {% endif %}
                 {% endif %}
                 {% endif %}
-
-        
-            
             </div>
-            {% endfor %}
-            
-        
-        
+            {% endfor %}       
+            </div>
         </div>
     </div>
-    
-    
-    
-    
-</div>
 <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up"></i></button>
     
   

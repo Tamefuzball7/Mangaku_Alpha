@@ -155,8 +155,10 @@ def comentarios(request, username, post_id):
 
     comments = Comment.objects.filter(post=post)
     comments_with_profiles = comments.select_related('user__profile')
+    usuarios_aleatorios = User.objects.exclude(id=user.id).order_by('?')[:3]
+    
+    context = {'user': user, 'post': post, 'comments': comments_with_profiles , 'usuarios_aleatorios': usuarios_aleatorios }
 
-    context = {'user': user, 'post': post, 'comments': comments_with_profiles}
     return render(request, 'mangaku/comentarios.html', context)
 
 @login_required
@@ -218,7 +220,7 @@ def like_comment(request, comment_id):
     else:
         comment.likes.add(request.user)
         comment.dislikes.remove(request.user)  
-        return redirect(request 'mangaku/comentarios.html')
+        return redirect('home')
 
 @login_required
 def dislike_comment(request, comment_id):
@@ -229,7 +231,7 @@ def dislike_comment(request, comment_id):
     else:
         comment.dislikes.add(request.user)
         comment.likes.remove(request.user)  
-        return redirect( request 'mangaku/comentarios.html')
+        return redirect( 'home')
     
 @login_required
 def change_password(request):
