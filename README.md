@@ -36,7 +36,7 @@ DATABASES = {
 5. Ejecuta las migraciones.
 
 ```python manage.py makemigrations```
-```python manage.py migrate``
+```python manage.py migrate```
 
 6. Crea un superusuario.
 
