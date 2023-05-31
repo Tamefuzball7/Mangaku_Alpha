@@ -102,37 +102,26 @@
 <div class="mobilemenu">
     
     <div class="mobilemenu_profile">
-        <img id="mobilemenu_portada" src="" />
+        <img id="mobilemenu_portada" src="{{ request.user.profile.fondo.url }}" />
         <div class="mobilemenu_profile">
-            <img id="mobilemenu_profile_pic" src="" /><br>
-            <span>Jonh Hamstrong<br><p>150k followers / 50 follow</p></span>
+            <img id="mobilemenu_profile_pic" src="{{ request.user.profile.image.url }}" /><br>
+            <span>{{ request.user.first_name }} {{ request.user.last_name }}<br>
+                <b>@{{ request.user }}</b>
+                <p><b>{{ user.profile.followers.count }}</b> Seguidores | <b>{{ user.profile.following.count }}</b> Seguidos</p></span>
         </div>
         <div class="mobilemenu_menu">
             <ul>
-                <li><a href="index.html" id="mobilemenu-selected"><i class="fa fa-globe"></i>Newsfeed</a></li>
-                <li><a href="profile.html"><i class="fa fa-user"></i>Profile</a></li>
-                <li><a href="friends.html"><i class="fa fa-users"></i>Friends</a></li>
-                <li><a href="messages.html"><i class="fa fa-comments-o"></i>messages</a></li>
-                <li class="primarymenu"><i class="fa fa-compass"></i>Explore</li>
-                <ul class="mobilemenu_child">
-                    <li style="border:none"><a href="#"><i class="fa fa-globe"></i>Activity</a></li>
-                    <li style="border:none"><a href="#"><i class="fa fa-file"></i>Friends</a></li>
-                    <li style="border:none"><a href="#"><i class="fa fa-file"></i>Groups</a></li>
-                    <li style="border:none"><a href="#"><i class="fa fa-file"></i>Pages</a></li>
-                    <li style="border:none"><a href="#"><i class="fa fa-file"></i>Saves</a></li>
-                </ul>
-                <li class="primarymenu"><i class="fa fa-user"></i>Rapid Access</li>
-                <ul class="mobilemenu_child">
-                    <li style="border:none"><a href="#"><i class="fa fa-star-o"></i>Your-Page.html</a></li>
-                    <li style="border:none"><a href="#"><i class="fa fa-star-o"></i>Your-Group.html</a></li>
-                </ul>
+                <li><a href="{% url 'home' %}" ><i class="fa fa-globe"></i>Inicio</a></li>
+                <li><a href="{% url 'profile' user %}"><i class="fa fa-user"></i>Perfil</a></li>
+                <li><a href="#"><i class="fa fa-users"></i>Grupos</a></li>
+                <li><a href="{% url 'chat' user %}"><i class="fa fa-comments-o"></i>Mensajes</a></li>
+                <li><a href="{% url 'editar' %}"><i class="fa fa-tasks"></i>Editar perfil</a></li>
             </ul>
                 <hr>
             <ul>
-                <li><a href="#">Terms & Conditions</a></li>
-                <li><a href="#">FAQ's</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="login.html">Logout</a></li>
+                <li><a href="#">Terminoss & Condicions</a></li>
+                <li><a href="#">Contactanos</a></li>
+                <li><a href="{% url 'logout' %}">Cerrar sesion</a></li>
             </ul>
         </div>
     </div>

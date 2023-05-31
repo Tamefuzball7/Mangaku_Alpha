@@ -27,7 +27,7 @@ SECRET_KEY = 'z-y!*q#z*y5&*v31!=*k_d2wj+r*d@a0@n+d8xl-!5okc!46+4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.20.35']
 
 
 # Application definition
@@ -77,6 +77,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'social_project.wsgi.application'
 ASGI_APPLICATION = 'social_project.asgi.application'
 
+
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels.layers.InMemoryChannelLayer',
@@ -87,14 +88,15 @@ CHANNEL_LAYERS = {
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
+        'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': 'HMujk9yzrKeDq7wK5J2l',
-        'HOST': 'containers-us-west-83.railway.app',
-        'PORT': '5543',
+        'PASSWORD': '202001',
+        'HOST': 'localhost',
+        'PORT': '5432',
         'OPTIONS': {
             'isolation_level': psycopg2.extensions.ISOLATION_LEVEL_REPEATABLE_READ,
         },

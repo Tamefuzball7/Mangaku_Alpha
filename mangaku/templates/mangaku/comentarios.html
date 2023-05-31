@@ -67,7 +67,7 @@
                             </a>
                         </li>
                         <li>
-                            <span>A <b>{{ post.total_likes }} </b>les gusta</span>
+                            <span><b>{{ post.total_likes }} </b></span>
                         </li>
                         <li class="hover-orange">
                             <a id="like-form" href="{% url 'dislike_post' post.id %}">
@@ -79,7 +79,7 @@
                             </a>
                         </li>
                         <li>
-                            <span>A <b>{{ post.total_dislikes }} </b>les disgusta</span>
+                            <span><b>{{ post.total_dislikes }} </b></span>
                         </li>
                     </ul>
                     <ul class="feed_footer_right">
@@ -101,7 +101,7 @@
                                 <img src="{{ request.user.profile.image.url }}" />
                                 <form method="post" action="{% url 'comentarios' user.username post.id %}">
                                     {% csrf_token %}
-                                    <span><b><textarea placeholder="Escribe un comentario" name="content" id="" cols="60" rows="2.5"></textarea></b></span>
+                                    <span><b><textarea placeholder="Escribe un comentario" name="content" id="" cols="20" rows="2.5"></textarea></b></span>
                                     <button class="hover-orange" type="submit"><i class="fa fa-paper-plane"></i></button>
                                 </form>
                             </div>

@@ -1,0 +1,8 @@
+services:
+  web:
+    image: railwayapp/python:3.11.3
+    envs:
+      - RAILWAY=True
+      - RAILWAY_START_CMD=python manage.py runserver 0.0.0.0:$PORT
+envs:
+  RAILWAY_COMMAND: daphne social_project.asgi:application

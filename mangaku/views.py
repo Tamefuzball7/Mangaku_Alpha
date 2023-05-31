@@ -12,6 +12,7 @@ from django.contrib.postgres.search import TrigramSimilarity
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 
+
 @login_required
 def home(request):
     user = request.user
@@ -247,9 +248,43 @@ def change_password(request):
 
 
 
+def toggle_like(request):
+    if request.method == 'POST':
+        post_id = request.POST.get('post_id')
+        post = get_object_or_404(Post, id=post_id)
+        user = request.user
 
+        if user in post.likes.all():
+            post.likes.remove(user)
+        else:
+            post.likes.add(user)
+            post.dislikes.remove(user)
 
+        total_likes = post.likes.count()
+        total_dislikes = post.dislikes.count()
 
+        return JsonResponse({'status': 'success', 'likes': total_likes, 'dislikes': total_dislikes})
+    else:
+        return JsonResponse({'status': 'error'})
+
+def toggle_dislike(request):
+    if request.method == 'POST':
+        post_id = request.POST.get('post_id')
+        post = get_object_or_404(Post, id=post_id)
+        user = request.user
+
+        if user in post.dislikes.all():
+            post.dislikes.remove(user)
+        else:
+            post.dislikes.add(user)
+            post.likes.remove(user)
+
+        total_likes = post.likes.count()
+        total_dislikes = post.dislikes.count()
+
+        return JsonResponse({'status': 'success', 'likes': total_likes, 'dislikes': total_dislikes})
+    else:
+        return JsonResponse({'status': 'error'})
 
 
 
