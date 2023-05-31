@@ -27,7 +27,7 @@ SECRET_KEY = 'z-y!*q#z*y5&*v31!=*k_d2wj+r*d@a0@n+d8xl-!5okc!46+4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.20.35']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -92,11 +92,11 @@ CHANNEL_LAYERS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': '202001',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': 'railway',           # Nombre de la base de datos
+        'USER': 'postgres',           # Usuario de la base de datos
+        'PASSWORD': 'mZKC6X5b8j3cpg0ZmQHE',         # Contraseña del usuario
+        'HOST': 'containers-us-west-158.railway.app',          # Dirección IP del host de la base de datos (puede ser localhost)
+        'PORT': '7696',
         'OPTIONS': {
             'isolation_level': psycopg2.extensions.ISOLATION_LEVEL_REPEATABLE_READ,
         },
