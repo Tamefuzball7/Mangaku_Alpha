@@ -1,1 +1,1 @@
-web: gunicorn 'social-project.wsgi'
+web: daphne 'social-project.wsgi' &&  daphne 'social-project.wsgi'
