@@ -1,4 +1,4 @@
-version: '3'
+version: '3.9'
 services:
   web:
     build:
@@ -20,16 +20,6 @@ services:
 volumes:
   postgres_data:
 
-env: {
-    PORT: {
-      type: env,
-      description: The port to listen on,
-      defaultValue: 8000
-    }
-    }
 
-deploy: {
-    numReplicas: 1,
-    memory: 1G,
-    command: python manage.py runserver 0.0.0.0:$PORT
-  }
+
+
