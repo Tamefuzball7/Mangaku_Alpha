@@ -91,15 +91,8 @@ CHANNEL_LAYERS = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',           # Nombre de la base de datos
-        'USER': 'postgres',           # Usuario de la base de datos
-        'PASSWORD': 'mZKC6X5b8j3cpg0ZmQHE',         # Contraseña del usuario
-        'HOST': 'containers-us-west-158.railway.app',          # Dirección IP del host de la base de datos (puede ser localhost)
-        'PORT': '7696',
-        'OPTIONS': {
-            'isolation_level': psycopg2.extensions.ISOLATION_LEVEL_REPEATABLE_READ,
-        },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
