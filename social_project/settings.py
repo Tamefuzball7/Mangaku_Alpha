@@ -27,7 +27,7 @@ SECRET_KEY = 'z-y!*q#z*y5&*v31!=*k_d2wj+r*d@a0@n+d8xl-!5okc!46+4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['mangakualpha-production.up.railway.app']
 
 
 # Application definition
