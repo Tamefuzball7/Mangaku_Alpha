@@ -1,1 +1,1 @@
-web: python manage.py migrate && docker run -p 8000:8000  mangakudocker
+web: python manage.py migrate && daphne social_project.asgi:application --port $PORT --bind 0.0.0.0
