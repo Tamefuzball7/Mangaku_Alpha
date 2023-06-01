@@ -28,7 +28,7 @@ SECRET_KEY = 'z-y!*q#z*y5&*v31!=*k_d2wj+r*d@a0@n+d8xl-!5okc!46+4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-CSRF_TRUSTED_ORIGINS = ['mangakualpha-production.up.railway.app']
+
 
 ALLOWED_HOSTS = ['*']
 
@@ -50,7 +50,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
