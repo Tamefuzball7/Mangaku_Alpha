@@ -11,5 +11,7 @@ RUN pip install -r requirements.txt
 
 COPY ./ ./
 
+RUN docker run -p 8000:8000  mangakudocker
+
 CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
 

@@ -1,6 +1,10 @@
-version: '3.8'
+version: '3'
 services:
   web:
+    image: railwayapp/python:3.11.3
+    environment:
+      - RAILWAY=True
+    command: daphne social_project.asgi:application --port $PORT --bind 0.0.0.0
     build:
       context: .
       dockerfile: Dockerfile
