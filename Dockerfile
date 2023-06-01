@@ -20,4 +20,4 @@ RUN python manage.py migrate
 
 EXPOSE 8000
 
-CMD ["sh", "entrypoint.sh"]
+ENTRYPOINT ["sh", "-c", "python manage.py runserver 0.0.0.0:$PORT"]
