@@ -17,6 +17,7 @@ RUN pip install -r  requirements.txt
 COPY ./ ./
 RUN python manage.py makemigrations
 RUN python manage.py migrate
+RUN manage.py collectstatics
 
 EXPOSE 8000
 
