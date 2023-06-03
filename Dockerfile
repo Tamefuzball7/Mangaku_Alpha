@@ -6,7 +6,7 @@ ENV PYTHONUNBUFFERED 1
 ENV RAILWAY_ENVIRONMENT=$RAILWAY_ENVIRONMENT
 
 RUN apt-get update \
-    && apt-get install -y gcc musl-dev postgresql-dev python3-dev libffi-dev libc-dev \
+    && apt-get install -y gcc musl-dev libpq-dev python3-dev libffi-dev libc-dev \
     && pip install --upgrade pip
 
 COPY ./requirements.txt ./
