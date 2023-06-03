@@ -1,4 +1,4 @@
-FROM python:3.11.3-alpine3.17
+FROM python:3.11.3-alpine3.18
 
 WORKDIR /app
 
@@ -14,7 +14,7 @@ COPY ./requirements.txt ./
 RUN pip install -r  requirements.txt
 
 COPY ./ ./
-COPY ./staticfiles /app/staticfiles
+COPY ./static /app/static
 
 RUN python manage.py makemigrations
 RUN python manage.py migrate
