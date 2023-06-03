@@ -15,10 +15,17 @@ from mangaku.routing import websocket_urlpatterns
 from django.conf import settings
 from django.core.asgi import get_asgi_application
 from channels.auth import AuthMiddlewareStack
+from django.core.asgi import get_asgi_application
+from django.contrib.staticfiles.handlers import ASGIStaticFilesHandler
+
+application = get_asgi_application()
+application = ASGIStaticFilesHandler(application)
 
 
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'social_project.settings')
+
+
 
 application = ProtocolTypeRouter(
     {
