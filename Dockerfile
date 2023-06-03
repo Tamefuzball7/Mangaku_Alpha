@@ -1,17 +1,17 @@
-FROM python:3.10.11-alpine
+FROM python:3.12.0b1-buster
 
 WORKDIR /app
 
 ENV PYTHONUNBUFFERED 1
 ENV RAILWAY_ENVIRONMENT=$RAILWAY_ENVIRONMENT
 
-RUN apk update \
-    && apk add --no-cache gcc musl-dev postgresql-dev python3-dev libffi-dev libc-dev \
+RUN apt-get update \
+    && apt-get install -y gcc musl-dev postgresql-dev python3-dev libffi-dev libc-dev \
     && pip install --upgrade pip
 
 COPY ./requirements.txt ./
 
-RUN pip install -r  requirements.txt
+RUN pip install -r requirements.txt
 
 COPY ./ ./
 COPY ./staticfiles /app/staticfiles
