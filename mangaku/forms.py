@@ -8,14 +8,12 @@ from .models import Post, Profile
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
-    profession = forms.CharField(max_length=100)
     phone_number = forms.CharField(max_length=20)
-    country = forms.CharField(max_length=100)
     gender = forms.CharField(max_length=10)
 
     class Meta:
         model = User
-        fields = ['first_name',"last_name", 'username', 'email', 'password1', 'password2','profession', 'phone_number', 'country', 'gender']
+        fields = ['first_name',"last_name", 'username', 'email', 'password1', 'password2', 'phone_number', 'gender']
 
 
 class PostForm(forms.ModelForm):
