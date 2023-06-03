@@ -164,7 +164,7 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-CSRF_TRUSTED_ORIGINS = ['mangakualpha-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://mangakualpha-production.up.railway.app']
 
 
 
