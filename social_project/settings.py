@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import psycopg2
 import os
 
 
@@ -95,10 +95,15 @@ CHANNEL_LAYERS = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'MjPkdzkx8PanHGrRabni',
+        'HOST': 'containers-us-west-145.railway.app',
+        'PORT': '7037',
     }
 }
+
 
 
 
