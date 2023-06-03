@@ -8,6 +8,7 @@ from django.contrib.auth import update_session_auth_hash
 from random import sample
 from django.http import HttpResponse ,JsonResponse
 from django.db.models import Q, Case, When , F
+from django.contrib.postgres.search import TrigramSimilarity 
 from django.contrib.postgres.search import similarity
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
