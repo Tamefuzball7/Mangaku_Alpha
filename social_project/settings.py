@@ -101,6 +101,9 @@ DATABASES = {
         'PASSWORD': 'MjPkdzkx8PanHGrRabni',
         'HOST': 'containers-us-west-145.railway.app',
         'PORT': '7037',
+        'OPTIONS': {
+            'isolation_level': psycopg2.extensions.ISOLATION_LEVEL_REPEATABLE_READ,
+        },
     }
 }
 

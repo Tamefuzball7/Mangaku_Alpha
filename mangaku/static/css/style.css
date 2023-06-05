@@ -88,7 +88,7 @@ html, body {background-color: #EDF2F6;font-family: 'Roboto', sans-serif;height:1
 .row_title a {font-size: .675rem;font-weight: 700;color:#FF9953;}
 .row_title a:hover {text-decoration: underline;}
 .row_contain {display: flex;align-items:center;width: 90%;margin: 0px auto;padding-bottom: 10px;padding-top: 10px;margin: 0px auto;}
-.row_contain img {height: 40px;width:40px;border-radius: 200px;margin: 0px 0px;}
+.row_contain img {height: 40px;width:40px;border-radius: 200px;margin: 0px 0px;background-image: url('../img/default-user.png');background-size: contain;background-repeat: no-repeat;background-position: center;}
 .row_contain span  {font-size: 12px;margin-left: 0px;width: 70%; cursor: pointer;}
 .row_contain span b {font-size: 10px;margin-left: 10px;width: 70%;cursor: pointer; }
 .row_contain span a {font-size: 13px;color: #515365;cursor: pointer;}
@@ -368,7 +368,7 @@ html, body {background-color: #EDF2F6;font-family: 'Roboto', sans-serif;height:1
  }
 
 
- @media screen and (max-width: 250px) {
+ @media screen and (max-width: 230px) {
 .feed_footer_left {width: 18%;}
 .feed_footer_left li {height: 50px;display: inline-block;line-height: 2.5;cursor: pointer;font-size: 14px;line-height: 3;text-align: center;margin-left: 10px}
 .feed_footer_left li span {font-size: 10px;display: none}
