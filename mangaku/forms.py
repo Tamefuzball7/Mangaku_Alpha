@@ -7,9 +7,15 @@ from .models import Post, Profile
 
 
 class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField()
-    phone_number = forms.CharField(max_length=20)
-    gender = forms.CharField(max_length=10)
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'input100', 'placeholder': 'Nombre'}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'input100', 'placeholder': 'Apellidos'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'input100', 'placeholder': 'Usuario'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'input100', 'placeholder': 'Correo Electrónico'}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input100', 'placeholder': 'Contraseña'}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input100', 'placeholder': 'Confirmar Contraseña'}))
+    phone_number = forms.CharField(max_length=10, widget=forms.TextInput(attrs={'class': 'input100', 'placeholder': 'Número de teléfono'}))
+    CHOICES = [('male', 'Hombre'), ('female', 'Mujer')]
+    gender = forms.ChoiceField(choices=CHOICES, widget=forms.Select(attrs={'class': 'input100', 'placeholder': 'Selecciona el género'}))
 
     class Meta:
         model = User

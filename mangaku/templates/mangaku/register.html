@@ -9,50 +9,47 @@
 
                 <form method="post" class="login100-form validate-form">
                     {% csrf_token %}
+                    
                     <span class="login100-form-title">
                         Registrarme
                     </span>
                     <div class="wrap-input100 validate-input" data-validate = "Valid user is required">
-                        <input class="input100" type="text" name="username" placeholder="Usuario">
+                        {{ form.username}}
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </span>
                     </div>
                     <div class="wrap-input100 validate-input" data-validate = "Valid user is required">
-                        <input class="input100" type="text" name="first_name" placeholder="Nombre">
+                        {{ form.first_name}}
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </span>
                     </div>
                     <div class="wrap-input100 validate-input" data-validate = "Valid user is required">
-                        <input class="input100" type="text" name="last_name" placeholder="Apellidos ">
+                        {{ form.last_name}}
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </span>
                     </div>
                     <div class="wrap-input100 validate-input" data-validate = "Valid user is required">
-                        <select class="input100" name="gender">
-                            <option selected>Genero</option>
-                            <option >Hombre</option>
-                            <option>Mujer</option>
-                        </select>
+                        {{ form.gender}}
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-user" aria-hidden=""></i>
                         </span>
                     </div>
                     <div class="wrap-input100 validate-input" data-validate = "">
-                        <input class="input100" type="text" name="phone_number" placeholder="Numero celular">
+                        {{ form.phone_number}}
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-user" aria-hidden="true"></i>
-                        </span>
+                        </span> 
                     </div>
                     <div class="wrap-input100 validate-input" data-validate = "">
-                        <input class="input100" type="text" name="email" placeholder="Correo Electronico">
+                        {{ form.email}}
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -60,7 +57,7 @@
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                        <input class="input100" type="password" name="password1" placeholder="Password">
+                        {{ form.password1}}
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-lock" aria-hidden="true"></i>
@@ -69,7 +66,7 @@
 
                     
                     <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                        <input class="input100" type="password" name="password2" placeholder="Password">
+                        {{ form.password2}}
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-lock" aria-hidden="true"></i>
