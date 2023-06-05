@@ -155,7 +155,7 @@ html, body {background-color: #EDF2F6;font-family: 'Roboto', sans-serif;height:1
 
 
 .feed {width: 100%;}
-.feed_title {padding: 20px;border-bottom: 1px solid #e6ecf5;letter-spacing: 1px;display: flex;align-items:center;}
+.feed_title {padding: 10px;border-bottom: 1px solid #e6ecf5;letter-spacing: 1px;display: flex;align-items:center;}
 .feed_title img {background-image: url('../img/default-user.png');background-size: contain;background-repeat: no-repeat;background-position: center;height: 40px;width:40px;border-radius: 200px;margin: 0px 5px;}
 .feed_title img::before {
     content: "";
@@ -230,7 +230,7 @@ html, body {background-color: #EDF2F6;font-family: 'Roboto', sans-serif;height:1
 .mobilemenu_profile span {color:#3F4257;margin-top:100px;font-weight: 700;}
 .mobilemenu_profile span p {font-size: 12px;font-weight: 200;}
 #mobilemenu_portada {width: 100%;height: 100px;position: absolute;left:0px;}
-#mobilemenu_profile_pic {width: 80px;height: 80px;border-radius: 200px;border: 3px solid #FF9933;margin-top: 60px;}
+#mobilemenu_profile_pic {width: 80px;height: 80px;border-radius: 200px;border: 3px solid #FF9933;margin-top: 60px;background-image: url('../img/default-user.png');background-size: contain;background-repeat: no-repeat;background-position: center;}
 .mobilemenu_menu {width: 100%;height: 400px;margin-top: 50px;text-align: left;margin-top: 25%;}
 .mobilemenu_menu ul {padding-bottom: 20px;}
 .mobilemenu_menu li a{display: block;font-size: 19px;cursor: pointer;font-size: 14px;width:100%;cursor: inherit;padding-top: 15px;padding-bottom: 15px;padding-left: 20px;}
