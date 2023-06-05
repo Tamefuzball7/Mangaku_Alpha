@@ -156,7 +156,7 @@ html, body {background-color: #EDF2F6;font-family: 'Roboto', sans-serif;height:1
 
 .feed {width: 100%;}
 .feed_title {padding: 20px;border-bottom: 1px solid #e6ecf5;letter-spacing: 1px;display: flex;align-items:center;}
-.feed_title img {background-image: url('../img/default-user.png');background-size: contain;background-repeat: no-repeat;background-position: center;height: 40px;width:40px;border-radius: 200px;margin: 0px 10px;}
+.feed_title img {background-image: url('../img/default-user.png');background-size: contain;background-repeat: no-repeat;background-position: center;height: 40px;width:40px;border-radius: 200px;margin: 0px 5px;}
 .feed_title img::before {
     content: "";
     display: block;
@@ -368,7 +368,7 @@ html, body {background-color: #EDF2F6;font-family: 'Roboto', sans-serif;height:1
  }
 
 
- @media screen and (max-width: 230px) {
+ @media screen and (max-width: 210px) {
 .feed_footer_left {width: 18%;}
 .feed_footer_left li {height: 50px;display: inline-block;line-height: 2.5;cursor: pointer;font-size: 14px;line-height: 3;text-align: center;margin-left: 10px}
 .feed_footer_left li span {font-size: 10px;display: none}
@@ -381,11 +381,11 @@ html, body {background-color: #EDF2F6;font-family: 'Roboto', sans-serif;height:1
 .loadmorefeed {display: none}
 .mobilemenu {width: 80%;}
 .friend_title button{padding:5px 15px;}
-.friend_title span {padding-left: 10px;}
+.friend_title span {padding-left: 0px;}
 .pi-input-lg {width: 90%;}
 .pi-input-md {width: 90%;}
 .pi-input-md input {width: 90%;padding: 5px;padding-top: 0px;color: #515365;font-size: .875rem;}
 .pi-input select {background-color: transparent;}
 .pi-input-lgg {width: 90%;}
-.row_contain_profilephotospage ul li img {width: 90%;height: 200px;border-radius: 4px}
+.row_contain_profilephotospage ul li img {width: 90%;height: 200px;border-radius: 20px}
  }
