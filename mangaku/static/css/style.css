@@ -30,7 +30,7 @@ html, body {background-color: #EDF2F6;font-family: 'Roboto', sans-serif;height:1
 
 /* Personalizado */
 .border-radius {border-radius: 6px;}
-.border-radius-image {border-radius: 200px;background-image: url('../img/default-user.png');background-size: contain;background-repeat: no-repeat;background-position: center;}
+.border-radius-image {border-radius: 600px;background-image: url('../img/default-user.png');background-size: contain;background-repeat: no-repeat;background-position: center;}
 .border-radius-image::before {
   content: "";
   display: block;
@@ -88,7 +88,18 @@ html, body {background-color: #EDF2F6;font-family: 'Roboto', sans-serif;height:1
 .row_title a {font-size: .675rem;font-weight: 700;color:#FF9953;}
 .row_title a:hover {text-decoration: underline;}
 .row_contain {display: flex;align-items:center;width: 90%;margin: 0px auto;padding-bottom: 10px;padding-top: 10px;margin: 0px auto;}
-.row_contain img {height: 40px;width:40px;border-radius: 200px;margin: 0px 5px;background-image: url('../img/default-user.png');background-size: contain;background-repeat: no-repeat;background-position: center;}
+.row_contain b {
+  background-image: url('../img/default-user.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 200px;
+  margin: 0px 5px;
+}
+
+
 .row_contain span  {font-size: 12px;margin-left: 0px;width: 70%; cursor: pointer;}
 .row_contain span b {font-size: 10px;margin-left: 10px;width: 70%;cursor: pointer; }
 .row_contain span a {font-size: 13px;color: #515365;cursor: pointer;}
@@ -97,7 +108,7 @@ html, body {background-color: #EDF2F6;font-family: 'Roboto', sans-serif;height:1
 .row_contain button a {color:white}
 .row_contain button:hover {background-color: #47bcff;}  
 
-.left_row_profile {width: 90%;margin: 0px auto;height: 150px;}
+.left_row_profile {width: 90px auto;margin: 0px auto;height: 150px;}
 #portada { width: 100%;height: 100px;position: absolute;}
 #portada::before {
   content: "";
@@ -230,7 +241,7 @@ html, body {background-color: #EDF2F6;font-family: 'Roboto', sans-serif;height:1
 .mobilemenu_profile span {color:#3F4257;margin-top:100px;font-weight: 700;}
 .mobilemenu_profile span p {font-size: 12px;font-weight: 200;}
 #mobilemenu_portada {width: 100%;height: 100px;position: absolute;left:0px;}
-#mobilemenu_profile_pic {width: 80px;height: 80px;border-radius: 200px;border: 3px solid #FF9933;margin-top: 60px;background-image: url('../img/default-user.png');background-size: contain;background-repeat: no-repeat;background-position: center;}
+#mobilemenu_profile_pic {width: 80px;height: 80px;border-radius: 200px;border: 3px solid #FF9933;margin-top: 60px;background-image: url('../img/default-user.png');background-size: contain;background-repeat: url('../img/transparente.png');background-position: center;}
 .mobilemenu_menu {width: 100%;height: 400px;margin-top: 50px;text-align: left;margin-top: 25%;}
 .mobilemenu_menu ul {padding-bottom: 20px;}
 .mobilemenu_menu li a{display: block;font-size: 19px;cursor: pointer;font-size: 14px;width:100%;cursor: inherit;padding-top: 15px;padding-bottom: 15px;padding-left: 20px;}
@@ -320,6 +331,15 @@ html, body {background-color: #EDF2F6;font-family: 'Roboto', sans-serif;height:1
 .friend {width: 100%;}
 .friend_title {padding: 20px;border-bottom: 1px solid #e6ecf5;letter-spacing: 1px;display: flex;align-items:center;}
 .friend_title img {height: 40px;width:40px;border-radius: 200px;margin: 0px 10px;background-image: url('../img/default-user.png');background-size: contain;background-repeat: no-repeat;background-position: center;}
+.friend_title img::before{
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 .friend_title span {font-size: .875rem;padding-left: 20px;width: 75%}
 .friend_title span b {color: #38A9FF;}
 .friend_title span p {font-size: .675rem;}
@@ -376,7 +396,7 @@ html, body {background-color: #EDF2F6;font-family: 'Roboto', sans-serif;height:1
 .publish_icons ul {width: 60%;margin-left: 10px;}
 .feed_footer_right {width: 70%;text-align: right;}
 .feed_content_image iframe {height: 200px;}
-.feed_footer_right li {display: inline-block;line-height: 0;cursor: pointer;font-size: 12px;text-align: center;margin-right: 5px;line-height: 3.5;}
+.feed_footer_right li {display: inline-block;line-height: 0;cursor: pointer;font-size: 10px;text-align: center;margin-right: 5px;line-height: 3.5;}
 .feed_footer_right li i {font-size: 16px;padding-right: 5px}
 .loadmorefeed {display: none}
 .mobilemenu {width: 80%;}

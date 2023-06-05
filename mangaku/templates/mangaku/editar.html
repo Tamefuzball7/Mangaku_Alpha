@@ -55,7 +55,6 @@
                         <div class="pi-input pi-input-lg">
                             <span>Usuario</span>
                             {{ u_form.username }}
-                            
                         </div>
                         <div class="pi-input pi-input-lg">
                             <span>Foto de portada</span>
@@ -105,10 +104,10 @@
             <div class="menusetting_contain">
                 <ul>
                     <li>
-                        <a href="Personal-Information.html" id="settings-select">Informacion personal</a>
+                        <a href="{% url 'editar' %}" id="settings-select">Informacion personal</a>
                     </li>
                     <li>
-                        <a href="settings.html">Confiduracion de cuenta</a>
+                        <a href="settings.html">Configuracion de cuenta</a>
                     </li>
                     <li>
                         <a href="{% url 'change_password' %}">Cambiar contraseña</a>
