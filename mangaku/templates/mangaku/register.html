@@ -13,72 +13,93 @@
                     <span class="login100-form-title">
                         Registrarme
                     </span>
-                    <div class="wrap-input100 validate-input" data-validate = "Valid user is required">
-                        {{ form.username}}
+                    <div class="wrap-input100 validate-input" data-validate="Valid user is required">
+                        {{ form.username }}
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </span>
+                        {% if form.username.errors %}
+                            <p class="error-message">{{ form.username.errors }}</p>
+                        {% endif %}
                     </div>
-                    <div class="wrap-input100 validate-input" data-validate = "Valid user is required">
-                        {{ form.first_name}}
+                    <div class="wrap-input100 validate-input" data-validate="Valid user is required">
+                        {{ form.first_name }}
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </span>
+                        {% if form.first_name.errors %}
+                            <p class="error-message">{{ form.first_name.errors }}</p>
+                        {% endif %}
                     </div>
-                    <div class="wrap-input100 validate-input" data-validate = "Valid user is required">
-                        {{ form.last_name}}
+                    <div class="wrap-input100 validate-input" data-validate="Valid user is required">
+                        {{ form.last_name }}
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </span>
+                        {% if form.last_name.errors %}
+                            <p class="error-message">{{ form.last_name.errors }}</p>
+                        {% endif %}
                     </div>
-                    <div class="wrap-input100 validate-input" data-validate = "Valid user is required">
-                        {{ form.gender}}
+                    <div class="wrap-input100 validate-input" data-validate="">
+                        {{ form.gender }}
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-user" aria-hidden=""></i>
                         </span>
+                        {% if form.gender.errors %}
+                            <p class="error-message">{{ form.gender.errors }}</p>
+                        {% endif %}
                     </div>
-                    <div class="wrap-input100 validate-input" data-validate = "">
-                        {{ form.phone_number}}
+                    <div class="wrap-input100 validate-input" data-validate="">
+                        {{ form.phone_number }}
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </span> 
+                        {% if form.phone_number.errors %}
+                            <p class="error-message">{{ form.phone_number.errors }}</p>
+                        {% endif %}
                     </div>
-                    <div class="wrap-input100 validate-input" data-validate = "">
-                        {{ form.email}}
+                    <div class="wrap-input100 validate-input" data-validate="">
+                        {{ form.email }}
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                         </span>
+                        {% if form.email.errors %}
+                            <p class="error-message">{{ form.email.errors }}</p>
+                        {% endif %}
                     </div>
-
-                    <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                        {{ form.password1}}
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        {{ form.password1 }}
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-lock" aria-hidden="true"></i>
                         </span>
+                        {% if form.password1.errors %}
+                            <p class="error-message">{{ form.password1.errors }}</p>
+                        {% endif %}
                     </div>
-
-                    
-                    <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                        {{ form.password2}}
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        {{ form.password2 }}
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-lock" aria-hidden="true"></i>
                         </span>
+                        {% if form.password2.errors %}
+                            <p class="error-message">{{ form.password2.errors }}</p>
+                        {% endif %}
                     </div>
-
+                
                     <div class="container-login100-form-btn">
                         <button class="login100-form-btn">
                             Registrarme
                         </button>
                     </div>
-
+                
                     <div class="text-center p-t-136">
                         <a class="txt2" href="{% url 'home' %}">
                             Ya Tengo Cuenta
