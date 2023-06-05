@@ -185,22 +185,19 @@ def delete_comment(request, post_id, comment_id):
     return redirect('home')
 
 
+from django.db.models import Q
+from django.contrib.auth.decorators import login_required
+
 @login_required
 def search(request):
     query = request.GET.get('q')
     profiles = []
 
     if query:
-        profiles = Profile.objects.annotate(
-            similarity=TrigramSimilarity('user__username', query) +
-                       TrigramSimilarity('user__first_name', query) +
-                       TrigramSimilarity('user__last_name', query)
-        ).filter(
+        profiles = Profile.objects.filter(
             Q(user__username__icontains=query) |
             Q(user__first_name__icontains=query) |
             Q(user__last_name__icontains=query)
-        ).order_by(
-            Case(When(similarity__gt=0.1, then=-1*F('similarity')), default=-1*F('similarity'))
         )
 
     return render(request, 'mangaku/search.html', {'profiles': profiles})
